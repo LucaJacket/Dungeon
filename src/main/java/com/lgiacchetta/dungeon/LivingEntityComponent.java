@@ -57,11 +57,11 @@ public class LivingEntityComponent extends Component {
 
     public void up() { physics.setVelocityY(-velocity); }
     public void left() {
-        getEntity().setScaleX(-1);
+        getEntity().setScaleX(-1); // rotate to left
         physics.setVelocityX(-velocity);
     }
     public void right() {
-        getEntity().setScaleX(1);
+        getEntity().setScaleX(1); // rotate to right
         physics.setVelocityX(velocity);
     }
     public void down() { physics.setVelocityY(velocity); }
