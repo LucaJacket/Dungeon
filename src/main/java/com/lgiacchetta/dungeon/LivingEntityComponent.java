@@ -13,12 +13,12 @@ public class LivingEntityComponent extends Component {
     private PhysicsComponent physics;
     private final AnimatedTexture texture;
     private final AnimationChannel idle, walk;
-    private double velocity;
-    private double maxHealth;
+    private final double velocity;
+    private final double maxHealth;
     private double health;
-    private double damageCooldown;
+    private final double damageCooldown;
     private double lastDamaged;
-    private double teleportCooldown;
+    private final double teleportCooldown;
     private double lastTeleported;
 
     public LivingEntityComponent(String idleAsset, int idleFrames, String walkAsset,
