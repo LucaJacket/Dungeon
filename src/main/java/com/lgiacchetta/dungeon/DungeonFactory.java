@@ -11,10 +11,6 @@ import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-
-import java.util.List;
 
 import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 
@@ -25,14 +21,6 @@ public class DungeonFactory implements EntityFactory {
                 .type(EntityType.WALL)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
-                .build();
-    }
-
-    @Spawns("point")
-    public Entity newPoint(SpawnData data) {
-        return FXGL.entityBuilder(data)
-                .type(EntityType.POINT)
-                .view(new Rectangle(16,16, Color.BLUE))
                 .build();
     }
 /*
@@ -189,22 +177,22 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 */
-    @Spawns("red-plate")
-    public Entity newRedPlate(SpawnData data) {
-        return entityBuilder(data)
-                .type(EntityType.PLATE)
+    @Spawns("door")
+    public Entity newDoor(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(EntityType.DOOR)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new CollidableComponent(true))
-                .with(new PlateComponent("red"))
+                .with(new PhysicsComponent())
+                .with(new DoorComponent(data.get("connected")))
                 .build();
     }
-    @Spawns("blue-plate")
-    public Entity newBluePlate(SpawnData data) {
+    @Spawns("plate")
+    public Entity newPlate(SpawnData data) {
         return entityBuilder(data)
                 .type(EntityType.PLATE)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
-                .with(new PlateComponent("blue"))
+                .with(new PlateComponent(data.get("color"), data.get("connected")))
                 .build();
     }
     @Spawns("ladder")
@@ -235,7 +223,9 @@ public class DungeonFactory implements EntityFactory {
                 .bbox(new HitBox(new Point2D(3, 8), BoundingShape.box(10, 20)))
                 .with(physics)
                 .with(new CollidableComponent(true))
-                .with(new PlayerComponent(data.get("idle"), 4, data.get("walk"), 4))
+                .with(new PlayerComponent(
+                        FXGL.gets("idlePlayer" + data.getData().get("type")), 4,
+                        FXGL.gets("walkPlayer" + data.getData().get("type")), 4))
                 .build();
     }
 }

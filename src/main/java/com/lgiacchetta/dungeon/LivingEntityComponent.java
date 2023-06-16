@@ -6,6 +6,7 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.geometry.Point2D;
+import javafx.util.Duration;
 
 import static com.lgiacchetta.dungeon.Utils.*;
 
@@ -74,16 +75,14 @@ public class LivingEntityComponent extends Component {
         return health;
     }
 
-    public void decHealth(double damage) {
+    public void damage(double damage) {
         double now = FXGL.getGameTimer().getNow();
         if (now - lastDamaged >= damageCooldown) {
             lastDamaged = now;
             health -= damage;
+            FXGL.getGameTimer().runAtInterval(() -> texture.setVisible(!texture.isVisible()),
+                    Duration.seconds(0.1), 10);
         }
-    }
-
-    public void incHealth(double restore) {
-        health += restore;
     }
 
     public void resetHealth() {

@@ -4,18 +4,18 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.Texture;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 public class PlateComponent extends Component {
     private final String color;
     private final Texture texture;
     private final Image unpressed;
     private final Image pressed;
-
-    public PlateComponent(String color) {
+    private final int connectedDoor;
+    public PlateComponent(String color, int connectedDoor) {
         this.color = color;
         unpressed = FXGL.image("plate/button_" + color + "_up.png");
         pressed = FXGL.image("plate/button_" + color + "_down.png");
+        this.connectedDoor = connectedDoor;
         texture = new Texture(unpressed);
     }
 
@@ -38,5 +38,9 @@ public class PlateComponent extends Component {
 
     public String getColor() {
         return color;
+    }
+
+    public int getConnectedDoor() {
+        return connectedDoor;
     }
 }

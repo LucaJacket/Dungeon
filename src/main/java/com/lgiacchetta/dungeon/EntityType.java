@@ -7,6 +7,7 @@ public enum EntityType {
     SPIKE,
     LADDER,
     PLATE,
+    DOOR,
     ORC_BOSS,
     ORC_NORMAL,
     ORC_TINY,
