@@ -7,24 +7,21 @@ import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
-import com.almasb.fxgl.physics.PhysicsComponent;
 import javafx.geometry.Insets;
-import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class DungeonApp extends GameApplication {
-    private Entity player1;
-    private Entity player2;
+    private Entity player1, player2;
     private VBox healthBars;
     private int currentLevel = 0;
     private GameOverScene gameOverScene;
@@ -42,7 +39,10 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-
+        vars.put("idlePlayer1", "hero/knight_m_idle_anim_f");
+        vars.put("walkPlayer1", "hero/knight_m_run_anim_f");
+        vars.put("idlePlayer2", "hero/knight_f_idle_anim_f");
+        vars.put("walkPlayer2", "hero/knight_f_run_anim_f");
     }
 
     @Override
@@ -153,7 +153,7 @@ public class DungeonApp extends GameApplication {
             @Override
             protected void onCollision(Entity a, Entity b) {
                 if (b.getComponent(SpikeComponent.class).isDangerous()) {
-                    a.getComponent(PlayerComponent.class).decHealth(Utils.spikeDamage);
+                    a.getComponent(PlayerComponent.class).damage(Utils.spikeDamage);
                     healthBars = updateHealth(healthBars);
                 }
             }
@@ -163,6 +163,14 @@ public class DungeonApp extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity a, Entity b) {
                 b.getComponent(PlateComponent.class).setPressed();
+                List<Entity> entities = FXGL.getGameWorld().getEntitiesByType(EntityType.DOOR);
+                for (Entity entity : entities) {
+                    DoorComponent door = entity.getComponent(DoorComponent.class);
+                    if (door.getConnectedPlate() ==
+                            b.getComponent(PlateComponent.class).getConnectedDoor()) {
+                        door.change();
+                    }
+                }
             }
 
             @Override
@@ -186,13 +194,6 @@ public class DungeonApp extends GameApplication {
         });
     }
 
-    private Entity spawnPlayer(char c, double x, double y) { // spawn player with own texture (m or f)
-        SpawnData data = new SpawnData(x, y);
-        data.put("idle", "knight/knight_" + c + "_idle_anim_f");
-        data.put("walk", "knight/knight_" + c + "_run_anim_f");
-        return FXGL.spawn("player", data);
-    }
-
     private VBox updateHealth(VBox prevHealthBars) {
         VBox vbox = new VBox(2.0);
         vbox.setPadding(new Insets(8.0));
@@ -204,8 +205,8 @@ public class DungeonApp extends GameApplication {
 
             double health = player.getComponent(PlayerComponent.class).getHealth();
 
-            char c = player == player1 ? 'm' : 'f';
-            hbox.getChildren().add(FXGL.getAssetLoader().loadTexture("knight/knight_" + c + "_idle_anim_f0.png"));
+            hbox.getChildren().add(FXGL.getAssetLoader().loadTexture(
+                    FXGL.gets("idlePlayer" + player.getProperties().getValue("type")) + "0.png"));
             for (int i = 0; i < Math.floor(health); i++) {
                 hbox.getChildren().add(FXGL.getAssetLoader().loadTexture("heart/ui_heart_full.png"));
             }
@@ -230,8 +231,12 @@ public class DungeonApp extends GameApplication {
         currentLevel = level;
         FXGL.setLevelFromMap("tmx/test-map-no-anim.tmx");
 
-        player1 = spawnPlayer('m', 240.0, 240.0);
-        player2 = spawnPlayer('f', 280.0, 280.0);
+        FXGL.getGameWorld().getEntitiesByType(EntityType.PLAYER).forEach(player -> {
+            if (player.getProperties().getValue("type").equals(1))
+                player1 = player;
+            else
+                player2 = player;
+        });
 
         Viewport viewport = FXGL.getGameScene().getViewport();
         viewport.bindToFit(FXGL.getAppWidth() / 4.0, FXGL.getAppHeight() / 4.0, player1, player2);
@@ -240,22 +245,13 @@ public class DungeonApp extends GameApplication {
         healthBars = updateHealth(null);
     }
 
-    public void restartLevel() {
-        player1.getComponent(PlayerComponent.class).resetHealth();
-        player2.getComponent(PlayerComponent.class).resetHealth();
-
-        healthBars = updateHealth(healthBars);
-
-        player1.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(240.0, 240.0));
-        player1.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(240.0, 280.0));
-    }
-
     public void onPlayerDied() {
-        restartLevel();
+        setLevel(currentLevel);
     }
 
     @Override
     protected void initGame() {
+        FXGL.getGameScene().setBackgroundColor(Color.BLACK);
         FXGL.getGameWorld().addEntityFactory(new DungeonFactory());
         gameOverScene = new GameOverScene();
         setLevel(currentLevel);

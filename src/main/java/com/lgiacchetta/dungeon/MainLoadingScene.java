@@ -23,7 +23,7 @@ public class MainLoadingScene extends LoadingScene {
         getContentRoot().getChildren().setAll(textLoading);
 
         String[] assets = {"orc/boss/ogre_run_anim_f", "demon/boss/big_demon_run_anim_f",
-                "undead/boss/big_zombie_run_anim_f", "knight/knight_m_run_anim_f"};
+                "undead/boss/big_zombie_run_anim_f", "hero/knight_m_run_anim_f"};
 
         for (int i = 0; i < 4; i++) {
             AnimatedTexture texture = new AnimatedTexture(
