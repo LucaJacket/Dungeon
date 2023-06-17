@@ -82,6 +82,7 @@ public class LivingEntityComponent extends Component {
             health -= damage;
             FXGL.getGameTimer().runAtInterval(() -> texture.setVisible(!texture.isVisible()),
                     Duration.seconds(0.1), 10);
+            FXGL.play("damage.wav");
         }
     }
 
@@ -94,6 +95,7 @@ public class LivingEntityComponent extends Component {
         if (now - lastTeleported >= teleportCooldown) {
             lastTeleported = now;
             physics.overwritePosition(location);
+            FXGL.play("ladder.wav");
         }
     }
 }

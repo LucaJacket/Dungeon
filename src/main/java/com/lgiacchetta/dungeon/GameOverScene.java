@@ -1,9 +1,11 @@
 package com.lgiacchetta.dungeon;
 
+import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.scene.SubScene;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
@@ -29,8 +31,18 @@ public class GameOverScene extends SubScene {
         textGameOver.setFill(Color.RED);
 
         Text textContinue = new Text("Press Enter to restart");
-        textContinue.setFont(Utils.UIFont.newFont(46.0));
+        textContinue.setFont(Utils.UIFont.newFont(32.0));
         textContinue.setFill(Color.WHITE);
+
+        Animation<?> animationTextContinue = animationBuilder()
+                .repeatInfinitely()
+                .autoReverse(true)
+                .scale(textContinue)
+                .from(new Point2D(1, 1))
+                .to(new Point2D(1.1, 1.1))
+                .build();
+        animationTextContinue.start();
+        this.addListener(animationTextContinue);
 
         VBox vbox = new VBox(48.0, textGameOver, textContinue);
         vbox.setAlignment(Pos.CENTER);
@@ -44,11 +56,14 @@ public class GameOverScene extends SubScene {
             @Override
             protected void onActionBegin() {
                 FXGL.getSceneService().popSubScene();
+                FXGL.getAudioPlayer().resumeAllMusic();
             }
         }, KeyCode.ENTER);
     }
 
     public void onGameOver() {
         FXGL.getSceneService().pushSubScene(this);
+        FXGL.getAudioPlayer().pauseAllMusic();
+        FXGL.play("game-over.wav");
     }
 }

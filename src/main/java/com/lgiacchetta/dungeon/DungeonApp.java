@@ -21,10 +21,12 @@ import java.util.List;
 import java.util.Map;
 
 public class DungeonApp extends GameApplication {
-    private Entity player1, player2;
+    private Entity player1;
+    private Entity player2;
     private VBox healthBars;
     private int currentLevel = 0;
     private GameOverScene gameOverScene;
+
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
@@ -194,6 +196,30 @@ public class DungeonApp extends GameApplication {
         });
     }
 
+    @Override
+    protected void onPreInit() {
+        FXGL.getSettings().setGlobalMusicVolume(0.25);
+        FXGL.loopBGM("melody.wav");
+    }
+
+    @Override
+    protected void initGame() {
+        FXGL.getGameScene().setBackgroundColor(Color.BLACK);
+        FXGL.getGameWorld().addEntityFactory(new DungeonFactory());
+        gameOverScene = new GameOverScene();
+        setLevel(currentLevel);
+    }
+
+    @Override
+    protected void onUpdate(double tpf) {
+        // check if player died
+        if (player1.getComponent(PlayerComponent.class).getHealth() <= 0.0 ||
+                player2.getComponent(PlayerComponent.class).getHealth() <= 0.0) {
+            gameOverScene.onGameOver();
+            onPlayerDied();
+        }
+    }
+
     private VBox updateHealth(VBox prevHealthBars) {
         VBox vbox = new VBox(2.0);
         vbox.setPadding(new Insets(8.0));
@@ -247,24 +273,6 @@ public class DungeonApp extends GameApplication {
 
     public void onPlayerDied() {
         setLevel(currentLevel);
-    }
-
-    @Override
-    protected void initGame() {
-        FXGL.getGameScene().setBackgroundColor(Color.BLACK);
-        FXGL.getGameWorld().addEntityFactory(new DungeonFactory());
-        gameOverScene = new GameOverScene();
-        setLevel(currentLevel);
-    }
-
-    @Override
-    protected void onUpdate(double tpf) {
-        // check if player died
-        if (player1.getComponent(PlayerComponent.class).getHealth() <= 0.0 ||
-                player2.getComponent(PlayerComponent.class).getHealth() <= 0.0) {
-            gameOverScene.onGameOver();
-            onPlayerDied();
-        }
     }
 
     public static void main(String[] args) {

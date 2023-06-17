@@ -1,5 +1,6 @@
 package com.lgiacchetta.dungeon;
 
+import com.almasb.fxgl.audio.Sound;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.ui.FontFactory;
@@ -19,7 +20,7 @@ public class Utils {
     public static final double mobVelocity = 50.0;
     public static final double mobAttackRange = 10 * 16.0;
     public static final double spikeDamage = 0.5;
-    public static final FontFactory UIFont = FXGL.getAssetLoader().loadFont("a-charming-font.ttf");
+    public static final FontFactory UIFont = FXGL.getAssetLoader().loadFont("alagard.ttf");
     public static AnimationChannel getAnimation(String filename, int nFrames, double seconds)
     {
         List<Image> list = new ArrayList<>();
