@@ -8,7 +8,8 @@ import javafx.scene.image.Image;
 public class DoorComponent extends Component {
     private PhysicsComponent physics;
     private Texture texture;
-    private final Image closed, open;
+    private final Image closed;
+    private final Image open;
     private final int connectedPlate;
     public DoorComponent(int connectedPlate) {
         this.connectedPlate = connectedPlate;
@@ -19,9 +20,11 @@ public class DoorComponent extends Component {
     }
     public void change() {
         if (isOpen()) {
+            FXGL.play("door-close.wav");
             texture.setImage(closed);
             physics.getBody().setActive(true);
         } else {
+            FXGL.play("door-open.wav");
             texture.setImage(open);
             physics.getBody().setActive(false);
         }
