@@ -1,13 +1,13 @@
 package com.lgiacchetta.dungeon;
 
 public enum EntityType {
-    POINT, // utility
     WALL,
     PLAYER,
     SPIKE,
     LADDER,
     PLATE,
     DOOR,
+    EXIT,
     ORC_BOSS,
     ORC_NORMAL,
     ORC_TINY,

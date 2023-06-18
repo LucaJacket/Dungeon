@@ -9,28 +9,43 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.almasb.fxgl.dsl.FXGL.animationBuilder;
+import static com.almasb.fxgl.dsl.FXGL.getAppHeight;
 
-public class GameOverScene extends SubScene {
-    public GameOverScene(Runnable onPop) {
+public class GameEndedScene extends SubScene {
+    public GameEndedScene(Runnable onPop) {
         Rectangle bg = new Rectangle(FXGL.getAppWidth(), getAppHeight(),
                 Color.color(0, 0, 0, 0.6));
 
-        Rectangle bgGameOver = new Rectangle(600.0, 400.0, Color.BLACK);
-        bgGameOver.setStroke(Color.RED);
+        Rectangle bgGameOver = new Rectangle(1000.0, 400.0, Color.BLACK);
+        bgGameOver.setStroke(Color.YELLOW);
         bgGameOver.setStrokeWidth(4.0);
         bgGameOver.setEffect(new DropShadow(64.0, Color.color(0,0,0, 0.9)));
 
-        Text textGameOver = new Text("GAME OVER");
-        textGameOver.setFont(Utils.UIFont.newFont(104.0));
-        textGameOver.setFill(Color.RED);
+        Text textCongratulations = new Text("CONGRATULATIONS");
+        textCongratulations.setFont(Utils.UIFont.newFont(104.0));
+        textCongratulations.setFill(Color.YELLOW);
 
-        Text textContinue = new Text("Press Enter to restart");
+        Text textCompleted = new Text("You completed the game");
+        textCompleted.setFont(Utils.UIFont.newFont(32.0));
+        textCompleted.setFill(Color.YELLOW);
+
+        Text textThanks = new Text("Thank you for playing");
+        textThanks.setFont(Utils.UIFont.newFont(32.0));
+        textThanks.setFill(Color.WHITE);
+
+        Text textGameDevelopers = new Text("developed by Sofia Vita & Luca Giacchetta");
+        textGameDevelopers.setFont(Utils.UIFont.newFont(20.0));
+        textGameDevelopers.setFill(Color.WHITE);
+
+        Text textContinue = new Text("Press Enter to restart the game");
         textContinue.setFont(Utils.UIFont.newFont(32.0));
         textContinue.setFill(Color.WHITE);
 
@@ -44,15 +59,14 @@ public class GameOverScene extends SubScene {
         animationTextContinue.start();
         this.addListener(animationTextContinue);
 
-        VBox vbox = new VBox(48.0, textGameOver, textContinue);
+        VBox vbox = new VBox(24.0, textCongratulations, textCompleted, textThanks, textGameDevelopers, textContinue);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(24.0));
 
         Pane pane = new StackPane(bg, bgGameOver, vbox);
 
         getContentRoot().getChildren().addAll(pane);
-
-        getInput().addAction(new UserAction("Restart level") {
+        getInput().addAction(new UserAction("Restart game") {
             @Override
             protected void onActionBegin() {
                 FXGL.getSceneService().popSubScene();
@@ -62,9 +76,9 @@ public class GameOverScene extends SubScene {
         }, KeyCode.ENTER);
     }
 
-    public void onGameOver() {
+    public void onGameEnded() {
         FXGL.getSceneService().pushSubScene(this);
         FXGL.getAudioPlayer().pauseAllMusic();
-        FXGL.play("game-over.wav");
+        FXGL.play("level-win.wav");
     }
 }

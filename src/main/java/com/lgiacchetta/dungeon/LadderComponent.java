@@ -6,7 +6,7 @@ import com.almasb.fxgl.texture.Texture;
 
 public class LadderComponent extends Component {
     private final int connectedLadder;
-    private Texture texture;
+    private final Texture texture;
 
     public LadderComponent(int connectedLadder) {
         this.connectedLadder = connectedLadder;

@@ -6,13 +6,12 @@ import com.almasb.fxgl.texture.Texture;
 import javafx.scene.image.Image;
 
 public class PlateComponent extends Component {
-    private final String color;
     private final Texture texture;
     private final Image unpressed;
     private final Image pressed;
     private final int connectedDoor;
+
     public PlateComponent(String color, int connectedDoor) {
-        this.color = color;
         unpressed = FXGL.image("plate/button_" + color + "_up.png");
         pressed = FXGL.image("plate/button_" + color + "_down.png");
         this.connectedDoor = connectedDoor;
@@ -24,20 +23,28 @@ public class PlateComponent extends Component {
         entity.getViewComponent().addChild(texture);
     }
 
-    public void setPressed() {
-        if (texture.getImage() == unpressed) {
-            texture.setImage(pressed);
-        }
-    }
-
-    public void setUnpress() {
-        if (texture.getImage() == pressed) {
+    public void change() {
+        if (isPressed() && !isBeingPressed()) {
             texture.setImage(unpressed);
         }
+        if (!isPressed() && isBeingPressed()) {
+            texture.setImage(pressed);
+
+            FXGL.getGameWorld().getEntitiesByType(EntityType.DOOR)
+                    .stream()
+                    .map(entity -> entity.getComponent(DoorComponent.class))
+                    .filter(door -> door.getConnectedPlate() == getConnectedDoor())
+                    .forEach(DoorComponent::change);
+        }
     }
 
-    public String getColor() {
-        return color;
+    private boolean isPressed() {
+        return texture.getImage() == pressed;
+    }
+
+    private boolean isBeingPressed() {
+        return FXGL.getGameWorld().getEntitiesByComponent(PlayerComponent.class)
+                .stream().anyMatch(player -> entity.isColliding(player));
     }
 
     public int getConnectedDoor() {
