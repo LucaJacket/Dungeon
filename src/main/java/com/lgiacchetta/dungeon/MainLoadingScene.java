@@ -3,11 +3,12 @@ package com.lgiacchetta.dungeon;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.AnimatedTexture;
-import com.almasb.fxgl.ui.FontFactory;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
+import static com.lgiacchetta.dungeon.Utils.*;
 
 public class MainLoadingScene extends LoadingScene {
     public MainLoadingScene() {
@@ -15,7 +16,7 @@ public class MainLoadingScene extends LoadingScene {
                 FXGL.image("loading.jpg"), null, null, null, null)));
 
         Text textLoading = new Text("LOADING");
-        textLoading.setFont(Utils.UIFont.newFont(104.0));
+        textLoading.setFont(UIFont.newFont(104.0));
         textLoading.setFill(Color.WHITE);
 
         FXGL.centerText(textLoading, FXGL.getAppWidth() / 2.0, FXGL.getAppHeight() * 2.0 / 3.0);
@@ -27,7 +28,7 @@ public class MainLoadingScene extends LoadingScene {
 
         for (int i = 0; i < 4; i++) {
             AnimatedTexture texture = new AnimatedTexture(
-                    Utils.getAnimation(assets[i], 4, 0.5)
+                    getAnimation(assets[i], 4, 0.5)
             );
             texture.loop();
             this.addListener(texture);

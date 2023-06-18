@@ -5,12 +5,14 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.Texture;
 import javafx.scene.image.Image;
+
 public class DoorComponent extends Component {
     private PhysicsComponent physics;
-    private Texture texture;
+    private final Texture texture;
     private final Image closed;
     private final Image open;
     private final int connectedPlate;
+
     public DoorComponent(int connectedPlate) {
         this.connectedPlate = connectedPlate;
         closed = FXGL.image("door/doors_leaf_closed.png");
@@ -18,6 +20,12 @@ public class DoorComponent extends Component {
 
         texture = new Texture(closed);
     }
+
+    @Override
+    public void onAdded() {
+        entity.getViewComponent().addChild(texture);
+    }
+
     public void change() {
         if (isOpen()) {
             FXGL.play("door-close.wav");
@@ -32,11 +40,6 @@ public class DoorComponent extends Component {
 
     public boolean isOpen() {
         return texture.getImage() == open;
-    }
-
-    @Override
-    public void onAdded() {
-        entity.getViewComponent().addChild(texture);
     }
 
     public int getConnectedPlate() {

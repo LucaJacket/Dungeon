@@ -186,6 +186,17 @@ public class DungeonFactory implements EntityFactory {
                 .with(new DoorComponent(data.get("connected")))
                 .build();
     }
+
+    @Spawns("exit")
+    public Entity newExit(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(EntityType.EXIT)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .with(new DoorComponent(data.get("connected")))
+                .build();
+    }
+
     @Spawns("plate")
     public Entity newPlate(SpawnData data) {
         return entityBuilder(data)
@@ -195,6 +206,7 @@ public class DungeonFactory implements EntityFactory {
                 .with(new PlateComponent(data.get("color"), data.get("connected")))
                 .build();
     }
+
     @Spawns("ladder")
     public Entity newLadder(SpawnData data) {
         return entityBuilder(data)
@@ -204,6 +216,7 @@ public class DungeonFactory implements EntityFactory {
                 .with(new LadderComponent(data.get("connected")))
                 .build();
     }
+
     @Spawns("spike")
     public Entity newSpike(SpawnData data) {
         return entityBuilder(data)
@@ -213,6 +226,7 @@ public class DungeonFactory implements EntityFactory {
                 .with(new SpikeComponent())
                 .build();
     }
+
     @Spawns("player")
     public Entity newPlayer(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();
@@ -224,8 +238,8 @@ public class DungeonFactory implements EntityFactory {
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new PlayerComponent(
-                        FXGL.gets("idlePlayer" + data.getData().get("type")), 4,
-                        FXGL.gets("walkPlayer" + data.getData().get("type")), 4))
+                        FXGL.gets("idlePlayer" + data.getData().get("type")),
+                        FXGL.gets("walkPlayer" + data.getData().get("type"))))
                 .build();
     }
 }

@@ -26,6 +26,8 @@ public class DungeonApp extends GameApplication {
     private VBox healthBars;
     private int currentLevel = 0;
     private GameOverScene gameOverScene;
+    private LevelEndScene levelEndScene;
+    private GameEndedScene gameEndedScene;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -141,7 +143,7 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        FXGL.getPhysicsWorld().setGravity(0,0); // top-down view
+        FXGL.getPhysicsWorld().setGravity(0.0,0.0); // top-down view
         FXGL.getPhysicsWorld().addCollisionHandler(
                 new CollisionHandler(EntityType.PLAYER, EntityType.PLAYER) {
                     @Override
@@ -155,7 +157,7 @@ public class DungeonApp extends GameApplication {
             @Override
             protected void onCollision(Entity a, Entity b) {
                 if (b.getComponent(SpikeComponent.class).isDangerous()) {
-                    a.getComponent(PlayerComponent.class).damage(Utils.spikeDamage);
+                    a.getComponent(PlayerComponent.class).damage(0.5);
                     healthBars = updateHealth(healthBars);
                 }
             }
@@ -164,20 +166,12 @@ public class DungeonApp extends GameApplication {
                 new CollisionHandler(EntityType.PLAYER, EntityType.PLATE) {
             @Override
             protected void onCollisionBegin(Entity a, Entity b) {
-                b.getComponent(PlateComponent.class).setPressed();
-                List<Entity> entities = FXGL.getGameWorld().getEntitiesByType(EntityType.DOOR);
-                for (Entity entity : entities) {
-                    DoorComponent door = entity.getComponent(DoorComponent.class);
-                    if (door.getConnectedPlate() ==
-                            b.getComponent(PlateComponent.class).getConnectedDoor()) {
-                        door.change();
-                    }
-                }
+                b.getComponent(PlateComponent.class).change();
             }
 
             @Override
             protected void onCollisionEnd(Entity a, Entity b) {
-                b.getComponent(PlateComponent.class).setUnpress();
+                b.getComponent(PlateComponent.class).change();
             }
         });
         FXGL.getPhysicsWorld().addCollisionHandler( // teleport
@@ -194,29 +188,40 @@ public class DungeonApp extends GameApplication {
                 }
             }
         });
+        FXGL.getPhysicsWorld().addCollisionHandler( // end level
+                new CollisionHandler(EntityType.PLAYER, EntityType.EXIT) {
+                    @Override
+                    protected void onCollisionBegin(Entity a, Entity b) {
+                        levelEndScene.onLevelEnd();
+                    }
+                });
+    }
+
+    @Override
+    protected void initGame() {
+        gameOverScene = new GameOverScene(this::onPlayerDied);
+        levelEndScene = new LevelEndScene(this::onLevelFinish);
+        gameEndedScene = new GameEndedScene(this::onGameFinish);
+
+        FXGL.getGameScene().setBackgroundColor(Color.BLACK);
+        FXGL.getGameWorld().addEntityFactory(new DungeonFactory());
+
+        setLevel(currentLevel);
     }
 
     @Override
     protected void onPreInit() {
         FXGL.getSettings().setGlobalMusicVolume(0.25);
+        FXGL.getSettings().setGlobalSoundVolume(0.5);
+
         FXGL.loopBGM("melody.wav");
     }
 
     @Override
-    protected void initGame() {
-        FXGL.getGameScene().setBackgroundColor(Color.BLACK);
-        FXGL.getGameWorld().addEntityFactory(new DungeonFactory());
-        gameOverScene = new GameOverScene();
-        setLevel(currentLevel);
-    }
-
-    @Override
     protected void onUpdate(double tpf) {
-        // check if player died
-        if (player1.getComponent(PlayerComponent.class).getHealth() <= 0.0 ||
-                player2.getComponent(PlayerComponent.class).getHealth() <= 0.0) {
+        if (player1.getComponent(PlayerComponent.class).getHealth() == 0.0 ||
+            player2.getComponent(PlayerComponent.class).getHealth() == 0.0) {
             gameOverScene.onGameOver();
-            onPlayerDied();
         }
     }
 
@@ -273,6 +278,21 @@ public class DungeonApp extends GameApplication {
 
     public void onPlayerDied() {
         setLevel(currentLevel);
+    }
+
+    public void onGameFinish() {
+        currentLevel = 0;
+        setLevel(currentLevel);
+    }
+
+    public void onLevelFinish() {
+        currentLevel++;
+
+        if (currentLevel == 3) { // 3 is MAX_LEVEL
+            gameEndedScene.onGameEnded();
+        } else {
+            setLevel(currentLevel);
+        }
     }
 
     public static void main(String[] args) {
