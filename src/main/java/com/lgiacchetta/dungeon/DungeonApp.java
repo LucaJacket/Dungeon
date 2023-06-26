@@ -1,7 +1,9 @@
 package com.lgiacchetta.dungeon;
 
+import com.almasb.fxgl.app.CursorInfo;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
@@ -20,33 +22,63 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static com.lgiacchetta.dungeon.Utils.musicGame;
+import static com.lgiacchetta.dungeon.Utils.musicMenu;
+
 public class DungeonApp extends GameApplication {
     private Entity player1;
     private Entity player2;
+    private String texturePlayer1;
+    private String texturePlayer2;
     private VBox healthBars;
-    private int currentLevel = 0;
+    private int currentLevel;
     private GameOverScene gameOverScene;
     private LevelEndScene levelEndScene;
-    private GameEndedScene gameEndedScene;
+    private GameEndScene gameEndScene;
+
+    @Override
+    protected void onPreInit() {
+        FXGL.getSettings().setGlobalMusicVolume(0.25);
+        FXGL.getSettings().setGlobalSoundVolume(0.5);
+        FXGL.getAudioPlayer().loopMusic(musicMenu);
+    }
 
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
         settings.setHeight(720);
+        settings.setMainMenuEnabled(true);
+        settings.setDefaultCursor(new CursorInfo("cursor.png", 5.0, 3.0));
+
         settings.setSceneFactory(new SceneFactory() {
             @Override
             public LoadingScene newLoadingScene() {
                 return new MainLoadingScene();
+            }
+
+            @Override
+            public FXGLMenu newMainMenu() {
+                return new MainMenu((level, skin1, skin2) -> {
+                    currentLevel = level;
+                    texturePlayer1 = skin1;
+                    texturePlayer2 = skin2;
+                    return null;
+                });
+            }
+
+            @Override
+            public FXGLMenu newGameMenu() {
+                return new GameMenu();
             }
         });
     }
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("idlePlayer1", "hero/knight_m_idle_anim_f");
-        vars.put("walkPlayer1", "hero/knight_m_run_anim_f");
-        vars.put("idlePlayer2", "hero/knight_f_idle_anim_f");
-        vars.put("walkPlayer2", "hero/knight_f_run_anim_f");
+        vars.put("idlePlayer1", texturePlayer1);
+        vars.put("walkPlayer1", texturePlayer1.replace("idle", "run"));
+        vars.put("idlePlayer2", texturePlayer2);
+        vars.put("walkPlayer2", texturePlayer2.replace("idle", "run"));
     }
 
     @Override
@@ -195,26 +227,33 @@ public class DungeonApp extends GameApplication {
                         levelEndScene.onLevelEnd();
                     }
                 });
+        FXGL.getPhysicsWorld().addCollisionHandler(
+                new CollisionHandler(EntityType.PLAYER, EntityType.POTION) {
+                    @Override
+                    protected void onCollisionBegin(Entity a, Entity b) {
+                        b.getComponent(PotionComponent.class).restoreHealth(a.getComponent(PlayerComponent.class));
+                        b.removeFromWorld();
+                        healthBars = updateHealth(healthBars);
+                    }
+                }
+        );
     }
 
     @Override
     protected void initGame() {
         gameOverScene = new GameOverScene(this::onPlayerDied);
         levelEndScene = new LevelEndScene(this::onLevelFinish);
-        gameEndedScene = new GameEndedScene(this::onGameFinish);
+        gameEndScene = new GameEndScene();
 
         FXGL.getGameScene().setBackgroundColor(Color.BLACK);
         FXGL.getGameWorld().addEntityFactory(new DungeonFactory());
 
+        FXGL.getAudioPlayer().stopMusic(musicMenu);
+        FXGL.getAudioPlayer().loopMusic(musicGame);
+
+        FXGL.getGameScene().setCursorInvisible();
+
         setLevel(currentLevel);
-    }
-
-    @Override
-    protected void onPreInit() {
-        FXGL.getSettings().setGlobalMusicVolume(0.25);
-        FXGL.getSettings().setGlobalSoundVolume(0.5);
-
-        FXGL.loopBGM("melody.wav");
     }
 
     @Override
@@ -229,15 +268,15 @@ public class DungeonApp extends GameApplication {
         VBox vbox = new VBox(2.0);
         vbox.setPadding(new Insets(8.0));
 
-        Entity[] players = {player1, player2};
+        Entity[] players = { player1, player2 };
         Arrays.stream(players).forEach(player -> {
             HBox hbox = new HBox(2.0);
             hbox.setAlignment(Pos.BASELINE_CENTER);
 
             double health = player.getComponent(PlayerComponent.class).getHealth();
 
-            hbox.getChildren().add(FXGL.getAssetLoader().loadTexture(
-                    FXGL.gets("idlePlayer" + player.getProperties().getValue("type")) + "0.png"));
+            hbox.getChildren().add(FXGL.getAssetLoader().loadTexture(FXGL.gets(
+                    "idlePlayer" + player.getProperties().getValue("type")) + "0.png"));
             for (int i = 0; i < Math.floor(health); i++) {
                 hbox.getChildren().add(FXGL.getAssetLoader().loadTexture("heart/ui_heart_full.png"));
             }
@@ -260,7 +299,8 @@ public class DungeonApp extends GameApplication {
 
     public void setLevel(int level) {
         currentLevel = level;
-        FXGL.setLevelFromMap("tmx/test-map-no-anim.tmx");
+
+        FXGL.setLevelFromMap("tmx/level" + level + ".tmx");
 
         FXGL.getGameWorld().getEntitiesByType(EntityType.PLAYER).forEach(player -> {
             if (player.getProperties().getValue("type").equals(1))
@@ -270,7 +310,7 @@ public class DungeonApp extends GameApplication {
         });
 
         Viewport viewport = FXGL.getGameScene().getViewport();
-        viewport.bindToFit(FXGL.getAppWidth() / 4.0, FXGL.getAppHeight() / 4.0, player1, player2);
+        viewport.bindToFit(FXGL.getAppWidth() / 8.0, FXGL.getAppHeight() / 8.0, player1, player2);
         viewport.setLazy(true); // feels better
 
         healthBars = updateHealth(null);
@@ -280,16 +320,11 @@ public class DungeonApp extends GameApplication {
         setLevel(currentLevel);
     }
 
-    public void onGameFinish() {
-        currentLevel = 0;
-        setLevel(currentLevel);
-    }
-
     public void onLevelFinish() {
         currentLevel++;
 
         if (currentLevel == 3) { // 3 is MAX_LEVEL
-            gameEndedScene.onGameEnded();
+            gameEndScene.onGameEnd();
         } else {
             setLevel(currentLevel);
         }

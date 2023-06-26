@@ -18,7 +18,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class GameOverScene extends SubScene {
     public GameOverScene(Runnable onPop) {
-        Rectangle bg = new Rectangle(FXGL.getAppWidth(), getAppHeight(),
+        Rectangle bg = new Rectangle(FXGL.getAppWidth(), FXGL.getAppHeight(),
                 Color.color(0, 0, 0, 0.6));
 
         Rectangle bgGameOver = new Rectangle(600.0, 400.0, Color.BLACK);
@@ -44,7 +44,9 @@ public class GameOverScene extends SubScene {
         animationTextContinue.start();
         this.addListener(animationTextContinue);
 
-        VBox vbox = new VBox(48.0, textGameOver, textContinue);
+        VBox vbox = new VBox(48.0,
+                textGameOver,
+                textContinue);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(24.0));
 
@@ -52,7 +54,7 @@ public class GameOverScene extends SubScene {
 
         getContentRoot().getChildren().addAll(pane);
 
-        getInput().addAction(new UserAction("Restart level") {
+        getInput().addAction(new UserAction("Restart Level") {
             @Override
             protected void onActionBegin() {
                 FXGL.getSceneService().popSubScene();

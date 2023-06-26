@@ -18,6 +18,8 @@ public class MainLoadingScene extends LoadingScene {
         Text textLoading = new Text("LOADING");
         textLoading.setFont(UIFont.newFont(104.0));
         textLoading.setFill(Color.WHITE);
+        textLoading.setStroke(Color.BLACK);
+        textLoading.setStrokeWidth(2.0);
 
         FXGL.centerText(textLoading, FXGL.getAppWidth() / 2.0, FXGL.getAppHeight() * 2.0 / 3.0);
 

@@ -76,9 +76,16 @@ public class PlayerComponent extends Component {
             lastDamaged = now;
             health = Math.max(health - damage, 0.0);
             FXGL.getGameTimer().runAtInterval(() -> texture.setVisible(!texture.isVisible()),
-                    Duration.seconds(0.1), 10);
+                    Duration.seconds(0.1), 8);
             FXGL.play("damage.wav");
         }
+    }
+
+    public void heal(double heal) {
+        health = Math.min(health + heal, 3.0);
+        FXGL.getGameTimer().runAtInterval(() -> texture.setVisible(!texture.isVisible()),
+                Duration.seconds(0.1), 8);
+        FXGL.play("heal.wav");
     }
 
     public void teleport(Point2D location) {

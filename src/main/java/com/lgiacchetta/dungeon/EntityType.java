@@ -8,6 +8,7 @@ public enum EntityType {
     PLATE,
     DOOR,
     EXIT,
+    POTION,
     ORC_BOSS,
     ORC_NORMAL,
     ORC_TINY,
