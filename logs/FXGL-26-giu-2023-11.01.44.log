@@ -1,0 +1,400 @@
+11:00:23.667 [main                     ] DEBUG Logger               - Configured Logger
+11:00:23.689 [main                     ] DEBUG GameApplication      - Logging settings
+Title: Untitled
+Version: 0.0
+Width: 1280
+Height: 720
+Fullscreen: false
+Intro: false
+Profiling: false
+Single step:false
+App Mode: DEVELOPER
+Menu Key: ESCAPE
+Stage Style: DECORATED
+Scene Factory: class com.lgiacchetta.dungeon.DungeonApp$1
+
+11:00:23.992 [JavaFX Application Thread] DEBUG FXGLApplication      - Initializing FXGL
+11:00:23.996 [JavaFX Application Thread] INFO  Engine               - FXGL-17.2 (20.08.2022 16.50) on WINDOWS (J:17.0.6 FX:17.0.2-ea)
+11:00:23.997 [JavaFX Application Thread] DEBUG Engine               - JRE Vendor Name: Oracle Corporation
+11:00:23.997 [JavaFX Application Thread] DEBUG Engine               - Running on OS: Windows 11 version 10.0
+11:00:23.997 [JavaFX Application Thread] DEBUG Engine               - Architecture: amd64
+11:00:23.997 [JavaFX Application Thread] INFO  Engine               - Source code and latest versions at: https://github.com/AlmasB/FXGL
+11:00:23.997 [JavaFX Application Thread] INFO  Engine               -       Ask questions and discuss at: https://github.com/AlmasB/FXGL/discussions
+11:00:23.997 [JavaFX Application Thread] INFO  Engine               -              Join the FXGL chat at: https://gitter.im/AlmasB/FXGL
+11:00:24.074 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Creating a JavaFX scene
+11:00:24.112 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Target settings size: 1280.0 x 720.0
+11:00:24.112 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled scene size:    1280.0 x 720.0
+11:00:24.112 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled ratio: (1.0, 1.0)
+11:00:24.113 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Set initial scene to FXGLStartupScene
+11:00:24.117 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Opening main window
+11:00:24.188 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Window border size: (14.6666259765625, 37.33331298828125)
+11:00:24.189 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled size: 1280.0 x 720.0
+11:00:24.189 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled ratio: (1.0, 1.0)
+11:00:24.189 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scene size: 1280.0 x 720.0
+11:00:24.189 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Stage size: 1294.6666259765625 x 757.3333129882812
+11:00:24.195 [FXGL Background Thread 1 ] DEBUG Engine               - Initializing environment variables
+11:00:24.230 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - User app class for loading assets: class com.lgiacchetta.dungeon.DungeonApp
+11:00:24.230 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Applying CSS: fxgl_dark.css
+11:00:24.231 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/.gradle/caches/modules-2/files-2.1/com.github.almasb/fxgl/17.2/35db6ae960eec2dcfd19262d3b7f9c42f0e95bc3/fxgl-17.2.jar!/fxglassets/ui/css/fxgl_dark.css
+11:00:24.276 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Initializing application scenes
+11:00:24.279 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/loading.jpg
+11:00:24.332 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/ui/fonts/alagard.ttf
+11:00:24.378 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/music/melody.wav
+11:00:24.686 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/music/menu.wav
+11:00:24.749 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/orc/boss/ogre_run_anim_f0.png
+11:00:24.753 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/orc/boss/ogre_run_anim_f1.png
+11:00:24.754 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/orc/boss/ogre_run_anim_f2.png
+11:00:24.754 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/orc/boss/ogre_run_anim_f3.png
+11:00:24.768 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/demon/boss/big_demon_run_anim_f0.png
+11:00:24.769 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/demon/boss/big_demon_run_anim_f1.png
+11:00:24.770 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/demon/boss/big_demon_run_anim_f2.png
+11:00:24.771 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/demon/boss/big_demon_run_anim_f3.png
+11:00:24.773 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/undead/boss/big_zombie_run_anim_f0.png
+11:00:24.774 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/undead/boss/big_zombie_run_anim_f1.png
+11:00:24.775 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/undead/boss/big_zombie_run_anim_f2.png
+11:00:24.777 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/undead/boss/big_zombie_run_anim_f3.png
+11:00:24.778 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_m_run_anim_f0.png
+11:00:24.779 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_m_run_anim_f1.png
+11:00:24.779 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_m_run_anim_f2.png
+11:00:24.780 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_m_run_anim_f3.png
+11:00:24.783 [FXGL Background Thread 1 ] DEBUG GameWorld            - Game world initialized
+11:00:24.851 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Physics world initialized: appHeight=720, physics.ppm=50,0
+11:00:24.852 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Using strategy: BRUTE_FORCE
+11:00:24.856 [FXGL Background Thread 1 ] DEBUG GameScene            - Game scene initialized: 1280x720
+11:00:24.873 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Application scenes initialized
+11:00:24.888 [FXGL Background Thread 1 ] DEBUG SystemBundleService  - Loading FXGL system data
+11:00:24.895 [FXGL Background Thread 1 ] DEBUG FileSystemAccess     - Reading from: C:\Users\lucag\IdeaProjects\Dungeon\system\fxgl.bundle
+11:00:24.902 [FXGL Background Thread 1 ] DEBUG SystemBundleService  - Bundle FXGL: {}
+11:00:24.902 [FXGL Background Thread 1 ] DEBUG UpdaterService       - Checking for updates
+11:00:24.909 [FXGL Background Thread 4 ] DEBUG FXGLApplication      - Loading fonts
+11:00:24.909 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/.gradle/caches/modules-2/files-2.1/com.github.almasb/fxgl/17.2/35db6ae960eec2dcfd19262d3b7f9c42f0e95bc3/fxgl-17.2.jar!/fxglassets/ui/fonts/VarelaRound-Regular.ttf
+11:00:24.909 [FXGL Background Thread 1 ] DEBUG FXGLApplication      - Loading default localization
+11:00:24.910 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/.gradle/caches/modules-2/files-2.1/com.github.almasb/fxgl/17.2/35db6ae960eec2dcfd19262d3b7f9c42f0e95bc3/fxgl-17.2.jar!/fxglassets/languages/english.lang
+11:00:24.914 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/.gradle/caches/modules-2/files-2.1/com.github.almasb/fxgl/17.2/35db6ae960eec2dcfd19262d3b7f9c42f0e95bc3/fxgl-17.2.jar!/fxglassets/ui/fonts/Abel-Regular.ttf
+11:00:24.918 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/.gradle/caches/modules-2/files-2.1/com.github.almasb/fxgl/17.2/35db6ae960eec2dcfd19262d3b7f9c42f0e95bc3/fxgl-17.2.jar!/fxglassets/ui/fonts/TerminalLandMono-Regular.otf
+11:00:24.922 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/.gradle/caches/modules-2/files-2.1/com.github.almasb/fxgl/17.2/35db6ae960eec2dcfd19262d3b7f9c42f0e95bc3/fxgl-17.2.jar!/fxglassets/ui/fonts/Courier-Prime.ttf
+11:00:24.929 [FXGL Background Thread 1 ] INFO  FXGLApplication      - FXGL initialization took: 0,733 sec
+11:00:24.939 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Up1 - W
+11:00:24.940 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Left1 - A
+11:00:24.940 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Down1 - S
+11:00:24.940 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Right1 - D
+11:00:24.940 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Up2 - Up
+11:00:24.940 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Left2 - Left
+11:00:24.940 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Down2 - Down
+11:00:24.940 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Right2 - Right
+11:00:24.941 [JavaFX Application Thread] DEBUG AudioPlayer          - Playing music com.almasb.fxgl.audio.Music@7c89a7d4
+11:00:24.956 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/.gradle/caches/modules-2/files-2.1/com.github.almasb/fxgl/17.2/35db6ae960eec2dcfd19262d3b7f9c42f0e95bc3/fxgl-17.2.jar!/fxglassets/textures/fxgl_icon.png
+11:00:24.984 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/cursor.png
+11:00:24.986 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Screenshot - CTRL+8
+11:00:24.987 [JavaFX Application Thread] DEBUG Input                - Registered new binding: System info dump - CTRL+9
+11:00:24.987 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Restart - CTRL+R
+11:00:24.988 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Toggle Debug Camera - CTRL+7
+11:00:24.994 [JavaFX Application Thread] DEBUG LoopRunner           - Starting loop
+11:00:24.994 [JavaFX Application Thread] DEBUG LoopRunner           - Initializing JavaFX AnimationTimerLoop
+11:00:24.997 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:00:25.010 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLStartupScene and adding to FXGLMainMenuDummyScene
+11:00:25.011 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLStartupScene -> FXGLMainMenuDummyScene
+11:00:25.011 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Push state: MainMenu
+11:00:25.011 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:00:25.015 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLMainMenuDummyScene and adding to MainMenu
+11:00:25.016 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene -> MainMenu
+11:00:25.016 [JavaFX Application Thread] DEBUG FXGLApplication      - Registering font factories with UI factory
+11:00:25.458 [FXGL Background Thread 2 ] INFO  UpdaterService       - Your current version:  17.2
+11:00:25.458 [FXGL Background Thread 2 ] INFO  UpdaterService       - Latest stable version: 17.3
+11:00:27.908 [FXGL Background Thread 3 ] DEBUG Engine               - Logging environment variables
+11:00:27.909 [FXGL Background Thread 3 ] DEBUG Engine               - achievements: []
+11:00:27.909 [FXGL Background Thread 3 ] DEBUG Engine               - actualHeight: 720.0
+11:00:27.910 [FXGL Background Thread 3 ] DEBUG Engine               - actualHeightProperty: ReadOnlyDoubleProperty [value: 720.0]
+11:00:27.910 [FXGL Background Thread 3 ] DEBUG Engine               - actualWidth: 1280.0
+11:00:27.910 [FXGL Background Thread 3 ] DEBUG Engine               - actualWidthProperty: ReadOnlyDoubleProperty [value: 1280.0]
+11:00:27.910 [FXGL Background Thread 3 ] DEBUG Engine               - appIcon: fxgl_icon.png
+11:00:27.910 [FXGL Background Thread 3 ] DEBUG Engine               - applicationMode: DEVELOPER
+11:00:27.910 [FXGL Background Thread 3 ] DEBUG Engine               - cSSList: [fxgl_dark.css]
+11:00:27.910 [FXGL Background Thread 3 ] DEBUG Engine               - collisionDetectionStrategy: BRUTE_FORCE
+11:00:27.911 [FXGL Background Thread 3 ] DEBUG Engine               - configClass: Optional.empty
+11:00:27.911 [FXGL Background Thread 3 ] DEBUG Engine               - credits: []
+11:00:27.912 [FXGL Background Thread 3 ] DEBUG Engine               - defaultCursor: CursorInfo(imageName=cursor.png, hotspotX=5.0, hotspotY=3.0)
+11:00:27.912 [FXGL Background Thread 3 ] DEBUG Engine               - devBBoxColorProperty: ObjectProperty [value: 0xff0000ff]
+11:00:27.912 [FXGL Background Thread 3 ] DEBUG Engine               - devEnableDebugCameraProperty: BooleanProperty [value: false]
+11:00:27.912 [FXGL Background Thread 3 ] DEBUG Engine               - devSensorColorProperty: ObjectProperty [value: 0xffff00ff]
+11:00:27.912 [FXGL Background Thread 3 ] DEBUG Engine               - devShowBBoxProperty: BooleanProperty [value: false]
+11:00:27.912 [FXGL Background Thread 3 ] DEBUG Engine               - devShowPositionProperty: BooleanProperty [value: false]
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - enabledMenuItems: []
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - engineServices: [class com.almasb.fxgl.app.services.FXGLAssetLoaderService, class com.almasb.fxgl.app.FXGLApplication$GameApplicationService, class com.almasb.fxgl.app.services.FXGLDialogService, class com.almasb.fxgl.app.services.IOTaskExecutorService, class com.almasb.fxgl.io.FileSystemService, class com.almasb.fxgl.localization.LocalizationService, class com.almasb.fxgl.app.services.SystemBundleService, class com.almasb.fxgl.profile.SaveLoadService, class com.almasb.fxgl.ui.FXGLUIFactoryServiceProvider, class com.almasb.fxgl.ui.FXGLDialogFactoryServiceProvider, class com.almasb.fxgl.audio.AudioPlayer, class com.almasb.fxgl.notification.impl.NotificationServiceProvider, class com.almasb.fxgl.achievement.AchievementService, class com.almasb.fxgl.cutscene.CutsceneService, class com.almasb.fxgl.minigames.MiniGameService, class com.almasb.fxgl.net.NetService, class com.almasb.fxgl.app.services.UpdaterService, class com.almasb.fxgl.dev.DevService]
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - fontGame: Abel-Regular.ttf
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - fontMono: TerminalLandMono-Regular.otf
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - fontText: Courier-Prime.ttf
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - fontUI: VarelaRound-Regular.ttf
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - fullScreen: BooleanProperty [value: false]
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - gameDifficulty: MEDIUM
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - gameDifficultyProperty: ObjectProperty [value: MEDIUM]
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - globalMusicVolume: 0.5
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - globalMusicVolumeProperty: DoubleProperty [value: 0.25]
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - globalSoundVolume: 0.5
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - globalSoundVolumeProperty: DoubleProperty [value: 0.5]
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - height: 720
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - is3D: false
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - isAndroid: false
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - isBrowser: false
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - isClickFeedbackEnabled: false
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - isCloseConfirmation: false
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - isDesktop: true
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - isDeveloperMenuEnabled: false
+11:00:27.913 [FXGL Background Thread 3 ] DEBUG Engine               - isEmbedded: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isEntityPreloadEnabled: true
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isExperimentalTiledLargeMap: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isFileSystemWriteAllowed: true
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isFullScreenAllowed: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isFullScreenFromStart: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isGameMenuEnabled: true
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isIOS: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isIntroEnabled: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isLinux: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isMac: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isMainMenuEnabled: true
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isManualResizeEnabled: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isMobile: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isNative: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isPauseMusicWhenMinimized: true
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isPreserveResizeRatio: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isProfilingEnabled: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isScaleAffectedOnResize: true
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isSingleStep: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isUserProfileEnabled: false
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - isWindows: true
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - language: ObjectProperty [value: ENGLISH]
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - menuKey: ESCAPE
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - mouseSensitivity: 0.2
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - notificationViewClass: class com.almasb.fxgl.notification.view.XboxNotificationView
+11:00:27.914 [FXGL Background Thread 3 ] DEBUG Engine               - pixelsPerMeter: 50.0
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - platform: WINDOWS
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - prefHeightProperty: ReadOnlyDoubleProperty [value: 720.0]
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - prefWidthProperty: ReadOnlyDoubleProperty [value: 1280.0]
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - profileDir: profiles/
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - profileName: StringProperty [value: DEFAULT]
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - randomSeed: -1
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - runtimeInfo: RuntimeInfo(platform=WINDOWS, version=17.2, build=20.08.2022 16.50)
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - saveFileExt: sav
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - scaledHeightProp$fxgl: DoubleProperty [bound, value: 720.0]
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - scaledWidthProp$fxgl: DoubleProperty [bound, value: 1280.0]
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - sceneFactory: com.lgiacchetta.dungeon.DungeonApp$1@7db2ec12
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - secondsIn24h: 60
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - soundMenuBack: menu/back.wav
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - soundMenuPress: menu/press.wav
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - soundMenuSelect: menu/select.wav
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - soundNotification: core/notification.wav
+11:00:27.915 [FXGL Background Thread 3 ] DEBUG Engine               - stageStyle: DECORATED
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - supportedLanguages: [ENGLISH, FRENCH, GERMAN, HUNGARIAN, RUSSIAN]
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - ticksPerSecond: -1
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - title: Untitled
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - urlGithub: https://github.com/AlmasB/FXGL
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - urlLeaderboard: http://fxgl-top.herokuapp.com/
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - urlPOM: https://raw.githubusercontent.com/AlmasB/FXGL/release/README.md
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - userAppClass: class com.lgiacchetta.dungeon.DungeonApp
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - version: 0.0
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - versionCheckDays: 7
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - width: 1280
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - Logging services
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.FXGLAssetLoaderService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.FXGLApplication$GameApplicationService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.FXGLDialogService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.IOTaskExecutorService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.io.FileSystemService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.localization.LocalizationService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.SystemBundleService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.profile.SaveLoadService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.ui.FXGLUIFactoryServiceProvider
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.ui.FXGLDialogFactoryServiceProvider
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.audio.AudioPlayer
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.notification.impl.NotificationServiceProvider
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.achievement.AchievementService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.cutscene.CutsceneService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.minigames.MiniGameService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.net.NetService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.UpdaterService
+11:00:27.916 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.dev.DevService
+11:00:35.967 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_m_idle_anim_f0.png
+11:00:35.968 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_m_idle_anim_f1.png
+11:00:35.969 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_m_idle_anim_f2.png
+11:00:35.969 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_m_idle_anim_f3.png
+11:00:35.973 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_f_idle_anim_f0.png
+11:00:35.974 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_f_idle_anim_f1.png
+11:00:35.974 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_f_idle_anim_f2.png
+11:00:35.974 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/knight_f_idle_anim_f3.png
+11:00:37.477 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/dwarf_m_idle_anim_f0.png
+11:00:37.479 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/dwarf_m_idle_anim_f1.png
+11:00:37.479 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/dwarf_m_idle_anim_f2.png
+11:00:37.480 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/dwarf_m_idle_anim_f3.png
+11:00:37.645 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/dwarf_f_idle_anim_f0.png
+11:00:37.646 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/dwarf_f_idle_anim_f1.png
+11:00:37.646 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/dwarf_f_idle_anim_f2.png
+11:00:37.646 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/dwarf_f_idle_anim_f3.png
+11:00:37.794 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/elf_m_idle_anim_f0.png
+11:00:37.795 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/elf_m_idle_anim_f1.png
+11:00:37.796 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/elf_m_idle_anim_f2.png
+11:00:37.796 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/elf_m_idle_anim_f3.png
+11:00:37.952 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/elf_f_idle_anim_f0.png
+11:00:37.952 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/elf_f_idle_anim_f1.png
+11:00:37.953 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/elf_f_idle_anim_f2.png
+11:00:37.953 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/elf_f_idle_anim_f3.png
+11:00:38.288 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_m_idle_anim_f0.png
+11:00:38.288 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_m_idle_anim_f1.png
+11:00:38.289 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_m_idle_anim_f2.png
+11:00:38.289 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_m_idle_anim_f3.png
+11:00:38.680 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_f_idle_anim_f0.png
+11:00:38.680 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_f_idle_anim_f1.png
+11:00:38.681 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_f_idle_anim_f2.png
+11:00:38.681 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_f_idle_anim_f3.png
+11:00:39.381 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_m_idle_anim_f0.png
+11:00:39.381 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_m_idle_anim_f1.png
+11:00:39.381 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_m_idle_anim_f2.png
+11:00:39.382 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_m_idle_anim_f3.png
+11:00:40.830 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_f_idle_anim_f0.png
+11:00:40.830 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_f_idle_anim_f1.png
+11:00:40.830 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_f_idle_anim_f2.png
+11:00:40.832 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_f_idle_anim_f3.png
+11:00:52.836 [JavaFX Application Thread] DEBUG Menu                 - fireNewGame()
+11:00:52.836 [JavaFX Application Thread] DEBUG GameApplicationServi - Starting new game
+11:00:52.836 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Pop state: MainMenu
+11:00:52.836 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:00:52.837 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from MainMenu and adding to FXGLMainMenuDummyScene
+11:00:52.837 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene <- MainMenu
+11:00:52.837 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:00:52.843 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLMainMenuDummyScene and adding to MainLoadingScene
+11:00:52.843 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene -> MainLoadingScene
+11:00:52.843 [JavaFX Application Thread] DEBUG GameApplicationServi - Clearing previous game
+11:00:52.843 [JavaFX Application Thread] DEBUG GameScene            - Clearing game scene
+11:00:52.843 [JavaFX Application Thread] DEBUG GameWorld            - Clearing game world
+11:00:52.843 [JavaFX Application Thread] DEBUG PhysicsWorld         - Clearing physics world
+11:00:52.848 [FXGL Background Thread 2 ] DEBUG FXGLApplication      - Initializing game
+11:00:52.856 [FXGL Background Thread 2 ] DEBUG Input                - Registered new binding: Restart Level - Enter
+11:00:52.859 [FXGL Background Thread 2 ] DEBUG Input                - Registered new binding: Game End - Enter
+11:00:52.864 [FXGL Background Thread 2 ] DEBUG AudioPlayer          - Stopping music com.almasb.fxgl.audio.Music@7c89a7d4
+11:00:52.865 [FXGL Background Thread 2 ] DEBUG AudioPlayer          - Playing music com.almasb.fxgl.audio.Music@11e22edd
+11:00:52.914 [FXGL Background Thread 2 ] WARN  TMXLevelLoader       - TiledMap generated from 1.10.1. Supported version: 1.9.0. Some features may not be parsed fully.
+11:00:52.942 [FXGL Background Thread 2 ] DEBUG TMXLevelLoader       - Parsed TiledMap: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/levels/tmx/level0.tmx
+11:00:52.942 [FXGL Background Thread 2 ] DEBUG TMXLevelLoader       - Creating tile layer entities
+11:00:52.944 [FXGL Background Thread 2 ] DEBUG TilesetLoader        - Loading view for layer floor
+11:00:52.944 [FXGL Background Thread 2 ] DEBUG TilesetLoader        - Created buffer with size 480.0x480.0
+11:00:53.003 [FXGL Background Thread 2 ] DEBUG TilesetLoader        - Loading view for layer walls
+11:00:53.003 [FXGL Background Thread 2 ] DEBUG TilesetLoader        - Created buffer with size 480.0x480.0
+11:00:53.005 [FXGL Background Thread 2 ] DEBUG TilesetLoader        - Loading view for layer side-walls
+11:00:53.005 [FXGL Background Thread 2 ] DEBUG TilesetLoader        - Created buffer with size 480.0x480.0
+11:00:53.005 [FXGL Background Thread 2 ] DEBUG TMXLevelLoader       - Creating object layer entities
+11:00:53.015 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/spike/floor_spikes_anim_f0.png
+11:00:53.016 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/spike/floor_spikes_anim_f1.png
+11:00:53.017 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/spike/floor_spikes_anim_f2.png
+11:00:53.017 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/spike/floor_spikes_anim_f3.png
+11:00:53.017 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/spike/floor_spikes_anim_f4.png
+11:00:53.018 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/spike/floor_spikes_anim_f5.png
+11:00:53.018 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/spike/floor_spikes_anim_f6.png
+11:00:53.018 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/spike/floor_spikes_anim_f7.png
+11:00:53.019 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/spike/floor_spikes_danger_anim_f0.png
+11:00:53.025 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/ladder/floor_ladder.png
+11:00:53.029 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/plate/button_red_up.png
+11:00:53.030 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/plate/button_red_down.png
+11:00:53.030 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/plate/button_blue_up.png
+11:00:53.031 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/plate/button_blue_down.png
+11:00:53.032 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/plate/button_yellow_up.png
+11:00:53.033 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/plate/button_yellow_down.png
+11:00:53.037 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/potion/flask_big_green.png
+11:00:53.038 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/door/doors_leaf_closed.png
+11:00:53.039 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/door/doors_leaf_open.png
+11:00:53.048 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_m_run_anim_f0.png
+11:00:53.048 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_m_run_anim_f1.png
+11:00:53.048 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_m_run_anim_f2.png
+11:00:53.049 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/wizzard_m_run_anim_f3.png
+11:00:53.050 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_m_run_anim_f0.png
+11:00:53.050 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_m_run_anim_f1.png
+11:00:53.050 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_m_run_anim_f2.png
+11:00:53.050 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/hero/lizard_m_run_anim_f3.png
+11:00:53.051 [FXGL Background Thread 2 ] DEBUG GameWorld            - Clearing removable entities
+11:00:53.051 [FXGL Background Thread 2 ] DEBUG GameWorld            - Setting level: com.almasb.fxgl.entity.level.Level@45bba4e3
+11:00:53.063 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/heart/ui_heart_full.png
+11:00:53.066 [FXGL Background Thread 2 ] INFO  FXGLApplication      - Game initialization took: 0,217 sec
+11:00:53.066 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:00:53.070 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from MainLoadingScene and adding to GameScene
+11:00:53.071 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - MainLoadingScene -> GameScene
+11:00:57.200 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/sounds/spike.wav
+11:00:57.208 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/sounds/damage.wav
+11:00:57.209 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/heart/ui_heart_half.png
+11:00:58.225 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/textures/heart/ui_heart_empty.png
+11:01:00.400 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/sounds/heal.wav
+11:01:11.696 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/sounds/ladder.wav
+11:01:12.338 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/sounds/door-open.wav
+11:01:29.664 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Push state: GameEndedScene
+11:01:29.664 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:01:29.665 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from GameScene and adding to GameEndedScene
+11:01:29.665 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - GameScene -> GameEndedScene
+11:01:29.665 [JavaFX Application Thread] DEBUG AudioPlayer          - Stopping music com.almasb.fxgl.audio.Music@11e22edd
+11:01:29.706 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/lucag/IdeaProjects/Dungeon/build/libs/Dungeon-1.0-SNAPSHOT.jar!/assets/sounds/level-win.wav
+11:01:36.074 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Pop state: GameEndedScene
+11:01:36.074 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:01:36.074 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from GameEndedScene and adding to GameScene
+11:01:36.074 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - GameScene <- GameEndedScene
+11:01:36.075 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:01:36.079 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from GameScene and adding to FXGLMainMenuDummyScene
+11:01:36.079 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - GameScene -> FXGLMainMenuDummyScene
+11:01:36.079 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Push state: MainMenu
+11:01:36.080 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:01:36.080 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLMainMenuDummyScene and adding to MainMenu
+11:01:36.080 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene -> MainMenu
+11:01:36.080 [JavaFX Application Thread] DEBUG AudioPlayer          - Playing music com.almasb.fxgl.audio.Music@7c89a7d4
+11:01:39.556 [JavaFX Application Thread] DEBUG Menu                 - fireNewGame()
+11:01:39.556 [JavaFX Application Thread] DEBUG GameApplicationServi - Starting new game
+11:01:39.556 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Pop state: MainMenu
+11:01:39.556 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:01:39.557 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from MainMenu and adding to FXGLMainMenuDummyScene
+11:01:39.557 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene <- MainMenu
+11:01:39.557 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:01:39.561 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLMainMenuDummyScene and adding to MainLoadingScene
+11:01:39.561 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene -> MainLoadingScene
+11:01:39.561 [JavaFX Application Thread] DEBUG GameApplicationServi - Clearing previous game
+11:01:39.561 [JavaFX Application Thread] DEBUG GameScene            - Clearing game scene
+11:01:39.561 [JavaFX Application Thread] DEBUG GameWorld            - Clearing game world
+11:01:39.563 [JavaFX Application Thread] DEBUG PhysicsWorld         - Clearing physics world
+11:01:39.563 [FXGL Background Thread 2 ] DEBUG FXGLApplication      - Initializing game
+11:01:39.563 [FXGL Background Thread 2 ] DEBUG Input                - Registered new binding: Restart Level - Enter
+11:01:39.563 [FXGL Background Thread 2 ] DEBUG Input                - Registered new binding: Game End - Enter
+11:01:39.563 [FXGL Background Thread 2 ] DEBUG AudioPlayer          - Stopping music com.almasb.fxgl.audio.Music@7c89a7d4
+11:01:39.565 [FXGL Background Thread 2 ] DEBUG AudioPlayer          - Playing music com.almasb.fxgl.audio.Music@11e22edd
+11:01:39.565 [FXGL Background Thread 2 ] WARN  FXGLAssetLoaderServi - Asset "/assets/levels/tmx/level1.tmx" was not found!
+11:01:39.568 [JavaFX Application Thread] DEBUG LoopRunner           - Stopping loop
+11:01:39.574 [JavaFX Application Thread] FATAL FXGLApplication      - Uncaught Exception:
+java.lang.RuntimeException: Initialization failed
+	at com.almasb.fxgl.all@17.2/com.almasb.fxgl.app.FXGLApplication$InitAppTask.failed(FXGLApplication.kt:343)
+	at javafx.graphics/javafx.concurrent.Task.setState(Task.java:710)
+	at javafx.graphics/javafx.concurrent.Task$TaskCallable.lambda$call$2(Task.java:1456)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:457)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:456)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.lang.IllegalArgumentException: Loading level failed. Asset not found: tmx/level1.tmx
+	at com.almasb.fxgl.all@17.2/com.almasb.fxgl.app.services.FXGLAssetLoaderService.loadLevel(FXGLAssetLoaderService.kt:443)
+	at com.almasb.fxgl.all@17.2/com.almasb.fxgl.dsl.FXGL$Companion.setLevelFromMap(FXGL.kt:634)
+	at com.almasb.fxgl.all@17.2/com.almasb.fxgl.dsl.FXGL.setLevelFromMap(FXGL.kt)
+	at com.lgiacchetta.dungeon@1.0-SNAPSHOT/com.lgiacchetta.dungeon.DungeonApp.setLevel(DungeonApp.java:305)
+	at com.lgiacchetta.dungeon@1.0-SNAPSHOT/com.lgiacchetta.dungeon.DungeonApp.initGame(DungeonApp.java:258)
+	at com.almasb.fxgl.all@17.2/com.almasb.fxgl.app.FXGLApplication$InitAppTask.initGame(FXGLApplication.kt:339)
+	at com.almasb.fxgl.all@17.2/com.almasb.fxgl.app.FXGLApplication$InitAppTask.call(FXGLApplication.kt:319)
+	at com.almasb.fxgl.all@17.2/com.almasb.fxgl.app.FXGLApplication$InitAppTask.call(FXGLApplication.kt:311)
+	at javafx.graphics/javafx.concurrent.Task$TaskCallable.call(Task.java:1426)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	... 1 more
+
+11:01:39.574 [JavaFX Application Thread] FATAL FXGLApplication      - Application will now exit
+11:01:39.639 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Push state: ErrorSubScene
+11:01:39.639 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+11:01:39.645 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from MainLoadingScene and adding to ErrorSubScene
+11:01:39.645 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - MainLoadingScene -> ErrorSubScene
+11:01:44.103 [JavaFX Application Thread] DEBUG FXGLApplication      - Exiting FXGL
+11:01:44.103 [JavaFX Application Thread] DEBUG Async                - Shutting down background threads
+11:01:44.103 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Closing main window
+11:01:44.122 [JavaFX Application Thread] DEBUG Logger               - Closing Logger

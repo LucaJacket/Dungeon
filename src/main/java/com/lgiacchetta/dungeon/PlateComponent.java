@@ -30,7 +30,7 @@ public class PlateComponent extends Component {
         if (!isPressed() && isBeingPressed()) {
             texture.setImage(pressed);
 
-            FXGL.getGameWorld().getEntitiesByType(EntityType.DOOR)
+            FXGL.getGameWorld().getEntitiesByComponent(DoorComponent.class)
                     .stream()
                     .map(entity -> entity.getComponent(DoorComponent.class))
                     .filter(door -> door.getConnectedPlate() == getConnectedDoor())

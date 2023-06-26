@@ -11,6 +11,8 @@ import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 
@@ -23,6 +25,7 @@ public class DungeonFactory implements EntityFactory {
                 .with(new PhysicsComponent())
                 .build();
     }
+
 /*
     @Spawns("orc_boss")
     public Entity newOrcBoss(SpawnData data) {
@@ -197,6 +200,17 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("potion")
+    public Entity newPotion(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(EntityType.POTION)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
+                .with(new PotionComponent(1.0))
+                .build();
+    }
+
     @Spawns("plate")
     public Entity newPlate(SpawnData data) {
         return entityBuilder(data)
@@ -234,7 +248,7 @@ public class DungeonFactory implements EntityFactory {
 
         return entityBuilder(data)
                 .type(EntityType.PLAYER)
-                .bbox(new HitBox(new Point2D(3, 8), BoundingShape.box(10, 20)))
+                .bbox(new HitBox(new Point2D(2, 12), BoundingShape.box(12, 16)))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new PlayerComponent(

@@ -2,6 +2,7 @@ package com.lgiacchetta.dungeon;
 
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
+import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.Texture;
 import javafx.scene.image.Image;
@@ -27,19 +28,23 @@ public class DoorComponent extends Component {
     }
 
     public void change() {
-        if (isOpen()) {
+        if (texture.getImage() == open) {
             FXGL.play("door-close.wav");
             texture.setImage(closed);
-            physics.getBody().setActive(true);
+            if (entity.getType().equals(EntityType.DOOR))
+                physics.getBody().setActive(true);
+            else {
+                entity.removeComponent(CollidableComponent.class);
+            }
         } else {
             FXGL.play("door-open.wav");
             texture.setImage(open);
-            physics.getBody().setActive(false);
+            if (entity.getType().equals(EntityType.DOOR))
+                physics.getBody().setActive(false);
+            else {
+                entity.addComponent(new CollidableComponent(true));
+            }
         }
-    }
-
-    public boolean isOpen() {
-        return texture.getImage() == open;
     }
 
     public int getConnectedPlate() {
