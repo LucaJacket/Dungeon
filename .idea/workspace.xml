@@ -5,32 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69721163-1eb0-404a-a35f-2e029258d932" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-10.11.52.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-10.42.12.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-10.50.07.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-10.58.53.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-11.00.19.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-11.04.43.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-11.36.35.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-11.49.52.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-11.51.51.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-18-giu-2023-11.53.45.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DoorComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DoorComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/EntityType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/EntityType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/GameEndedScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/GameEndScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/GameOverScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/GameOverScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/MainLoadingScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/MainLoadingScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/PlateComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/PlateComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/PlayerComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/PlayerComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/test-map-no-anim.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/tutorial.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/music/melody.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-19.20.14.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.14.54.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.17.03.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.18.39.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.18.57.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.22.22.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.54.02.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.00.05.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.01.44.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.11.09.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/LevelEndScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/LevelEndScene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,28 +36,33 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2RNxeomhVwiLv38XAtz64lAFTP2" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/lucag/IdeaProjects/Dungeon/src/main/resources/assets/textures",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lucag/IdeaProjects/Dungeon/src/main/resources/assets/textures&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lucag\IdeaProjects\Dungeon\src\main\resources\assets\textures" />
@@ -107,5 +98,16 @@
       <updated>1687104438057</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
