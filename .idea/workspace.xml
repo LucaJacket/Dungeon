@@ -4,19 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69721163-1eb0-404a-a35f-2e029258d932" name="Changes" comment="">
+    <list default="true" id="69721163-1eb0-404a-a35f-2e029258d932" name="Changes" comment="Sofia 1st Merge">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_06_2023_11_22__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_06_2023_11_22__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-19.20.14.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.14.54.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.17.03.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.18.39.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.18.57.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.22.22.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-25-giu-2023-20.54.02.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.00.05.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.01.44.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.11.09.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/LevelEndScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/LevelEndScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.26.04.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.28.09.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.31.55.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-11.35.43.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-13.06.24.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-13.08.14.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-13.10.18.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-14.13.55.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-14.22.30.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-26-giu-2023-14.23.57.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level2.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level2.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level3.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level3.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/livello2.tmx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +40,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Sofia" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -97,6 +114,21 @@
       <option name="presentableId" value="Default" />
       <updated>1687104438057</updated>
     </task>
+    <task id="LOCAL-00001" summary="Sofia 1st Merge">
+      <created>1687782862449</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687782862449</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Sofia 1st Merge">
+      <created>1687783058524</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1687783058524</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,5 +141,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Sofia 1st Merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sofia 1st Merge" />
   </component>
 </project>
