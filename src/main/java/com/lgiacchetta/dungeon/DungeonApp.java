@@ -51,6 +51,9 @@ public class DungeonApp extends GameApplication {
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
         settings.setHeight(720);
+        settings.setTitle("Dungeon");
+        settings.setVersion("1.0");
+        settings.setAppIcon("chest/chest_full_open_anim_f2.png");
         settings.setMainMenuEnabled(true);
         settings.setDefaultCursor(new CursorInfo("cursor.png", 5.0, 3.0));
         settings.setFontGame("alagard.ttf");
