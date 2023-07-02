@@ -16,6 +16,7 @@ import javafx.util.Duration;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class PlayerTriggerHandler extends CollisionHandler {
+
     public PlayerTriggerHandler() {
         super(EntityType.PLAYER, EntityType.TRIGGER);
     }

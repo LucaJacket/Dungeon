@@ -23,8 +23,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.lgiacchetta.dungeon.Utils.getAnimation;
-import static com.lgiacchetta.dungeon.Utils.musicGame;
+import static com.lgiacchetta.dungeon.Utils.*;
 
 public class LevelEndScene extends SubScene {
     private final BooleanProperty isAnimationDone;
