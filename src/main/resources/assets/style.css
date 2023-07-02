@@ -1,0 +1,19 @@
+.slider .track {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 20px;
+    -fx-background-color: #000000;
+    -fx-background-radius: 0;
+    -fx-border-color: #ffff00;
+    -fx-border-width: 4px;
+    -fx-border-radius: 0;
+}
+
+.slider .thumb {
+    -fx-pref-width: 20px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 0;
+    -fx-background-color: #000000;
+    -fx-border-color: #ffff00;
+    -fx-border-width: 4px;
+    -fx-border-radius: 0;
+}

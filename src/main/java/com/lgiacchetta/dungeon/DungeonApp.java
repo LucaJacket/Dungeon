@@ -8,39 +8,43 @@ import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.dsl.components.HealthDoubleComponent;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.texture.Texture;
+import com.lgiacchetta.dungeon.collision.*;
+import com.lgiacchetta.dungeon.component.*;
+import com.lgiacchetta.dungeon.menu.GameMenu;
+import com.lgiacchetta.dungeon.menu.MainMenu;
+import com.lgiacchetta.dungeon.scene.GameEndScene;
+import com.lgiacchetta.dungeon.scene.GameOverScene;
+import com.lgiacchetta.dungeon.scene.MainLoadingScene;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
-import static com.lgiacchetta.dungeon.Utils.musicGame;
-import static com.lgiacchetta.dungeon.Utils.musicMenu;
+import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.lgiacchetta.dungeon.Utils.*;
 
 public class DungeonApp extends GameApplication {
     private Entity player1;
     private Entity player2;
-    private String texturePlayer1;
-    private String texturePlayer2;
-    private VBox healthBars;
-    private int currentLevel;
-    private GameOverScene gameOverScene;
-    private LevelEndScene levelEndScene;
-    private GameEndScene gameEndScene;
+    private StringProperty texturePlayer1;
+    private StringProperty texturePlayer2;
+    private IntegerProperty chosenLevel;
 
     @Override
     protected void onPreInit() {
-        FXGL.getSettings().setGlobalMusicVolume(0.25);
-        FXGL.getSettings().setGlobalSoundVolume(0.5);
-        FXGL.getAudioPlayer().loopMusic(musicMenu);
+        getSettings().setGlobalMusicVolume(0.5);
+        getSettings().setGlobalSoundVolume(0.5);
+        getAudioPlayer().loopMusic(musicMenu);
     }
 
     @Override
@@ -49,6 +53,13 @@ public class DungeonApp extends GameApplication {
         settings.setHeight(720);
         settings.setMainMenuEnabled(true);
         settings.setDefaultCursor(new CursorInfo("cursor.png", 5.0, 3.0));
+        settings.setFontGame("alagard.ttf");
+        settings.setFontMono("alagard.ttf");
+        settings.setFontText("alagard.ttf");
+        settings.setFontUI("alagard.ttf");
+        texturePlayer1 = new SimpleStringProperty("hero/knight_m_idle_anim_f");
+        texturePlayer2 = new SimpleStringProperty("hero/knight_f_idle_anim_f");
+        chosenLevel = new SimpleIntegerProperty(0);
 
         settings.setSceneFactory(new SceneFactory() {
             @Override
@@ -58,12 +69,7 @@ public class DungeonApp extends GameApplication {
 
             @Override
             public FXGLMenu newMainMenu() {
-                return new MainMenu((level, skin1, skin2) -> {
-                    currentLevel = level;
-                    texturePlayer1 = skin1;
-                    texturePlayer2 = skin2;
-                    return null;
-                });
+                return new MainMenu(texturePlayer1, texturePlayer2, chosenLevel);
             }
 
             @Override
@@ -75,15 +81,17 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("idlePlayer1", texturePlayer1);
-        vars.put("walkPlayer1", texturePlayer1.replace("idle", "run"));
-        vars.put("idlePlayer2", texturePlayer2);
-        vars.put("walkPlayer2", texturePlayer2.replace("idle", "run"));
+        vars.put("idlePlayer1", texturePlayer1.getValue());
+        vars.put("walkPlayer1", texturePlayer1.getValue().replace("idle", "run"));
+        vars.put("idlePlayer2", texturePlayer2.getValue());
+        vars.put("walkPlayer2", texturePlayer2.getValue().replace("idle", "run"));
+        vars.put("level", chosenLevel.get());
+        vars.put("levelTime", 0.0);
     }
 
     @Override
     protected void initInput() {
-        FXGL.getInput().addAction(new UserAction("Up1") {
+        getInput().addAction(new UserAction("Up1") {
             @Override
             protected void onAction() {
                 player1.getComponent(PlayerComponent.class).up();
@@ -94,7 +102,7 @@ public class DungeonApp extends GameApplication {
                 player1.getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.W); // move player1
-        FXGL.getInput().addAction(new UserAction("Left1") {
+        getInput().addAction(new UserAction("Left1") {
             @Override
             protected void onAction() {
                 player1.getComponent(PlayerComponent.class).left();
@@ -105,7 +113,7 @@ public class DungeonApp extends GameApplication {
                 player1.getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.A);
-        FXGL.getInput().addAction(new UserAction("Down1") {
+        getInput().addAction(new UserAction("Down1") {
             @Override
             protected void onAction() {
                 player1.getComponent(PlayerComponent.class).down();
@@ -116,7 +124,7 @@ public class DungeonApp extends GameApplication {
                 player1.getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.S);
-        FXGL.getInput().addAction(new UserAction("Right1") {
+        getInput().addAction(new UserAction("Right1") {
             @Override
             protected void onAction() {
                 player1.getComponent(PlayerComponent.class).right();
@@ -127,7 +135,7 @@ public class DungeonApp extends GameApplication {
                 player1.getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.D);
-        FXGL.getInput().addAction(new UserAction("Up2") {
+        getInput().addAction(new UserAction("Up2") {
             @Override
             protected void onAction() {
                 player2.getComponent(PlayerComponent.class).up();
@@ -138,7 +146,7 @@ public class DungeonApp extends GameApplication {
                 player2.getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.UP); // move player2
-        FXGL.getInput().addAction(new UserAction("Left2") {
+        getInput().addAction(new UserAction("Left2") {
             @Override
             protected void onAction() {
                 player2.getComponent(PlayerComponent.class).left();
@@ -149,7 +157,7 @@ public class DungeonApp extends GameApplication {
                 player2.getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.LEFT);
-        FXGL.getInput().addAction(new UserAction("Down2") {
+        getInput().addAction(new UserAction("Down2") {
             @Override
             protected void onAction() {
                 player2.getComponent(PlayerComponent.class).down();
@@ -160,7 +168,7 @@ public class DungeonApp extends GameApplication {
                 player2.getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.DOWN);
-        FXGL.getInput().addAction(new UserAction("Right2") {
+        getInput().addAction(new UserAction("Right2") {
             @Override
             protected void onAction() {
                 player2.getComponent(PlayerComponent.class).right();
@@ -175,159 +183,130 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        FXGL.getPhysicsWorld().setGravity(0.0,0.0); // top-down view
-        FXGL.getPhysicsWorld().addCollisionHandler(
-                new CollisionHandler(EntityType.PLAYER, EntityType.PLAYER) {
-                    @Override
-                    protected void onCollisionEnd(Entity a, Entity b) {
-                        a.getComponent(PlayerComponent.class).stop();
-                        b.getComponent(PlayerComponent.class).stop();
-                    }
-                });
-        FXGL.getPhysicsWorld().addCollisionHandler( // damage player
-                new CollisionHandler(EntityType.PLAYER, EntityType.SPIKE) {
-            @Override
-            protected void onCollision(Entity a, Entity b) {
-                if (b.getComponent(SpikeComponent.class).isDangerous()) {
-                    a.getComponent(PlayerComponent.class).damage(0.5);
-                    healthBars = updateHealth(healthBars);
-                }
-            }
-        });
-        FXGL.getPhysicsWorld().addCollisionHandler( // activate plate
-                new CollisionHandler(EntityType.PLAYER, EntityType.PLATE) {
-            @Override
-            protected void onCollisionBegin(Entity a, Entity b) {
-                b.getComponent(PlateComponent.class).change();
-            }
+        FXGL.getPhysicsWorld().setGravity(0.0,0.0);
+        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerPlayerHandler());
+        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerSpikeHandler());
+        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerPlateHandler());
+        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerLadderHandler());
+        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerExitHandler(this::onLevelEnded));
+        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerPotionHandler());
+        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerTriggerHandler());
+    }
 
-            @Override
-            protected void onCollisionEnd(Entity a, Entity b) {
-                b.getComponent(PlateComponent.class).change();
-            }
-        });
-        FXGL.getPhysicsWorld().addCollisionHandler( // teleport
-                new CollisionHandler(EntityType.PLAYER, EntityType.LADDER) {
-            @Override
-            protected void onCollisionBegin(Entity a, Entity b) {
-                List<Entity> ladders = FXGL.getGameWorld().getEntitiesByType(EntityType.LADDER);
-                ladders.remove(b);
-                for (Entity ladder : ladders) {
-                    if (ladder.getComponent(LadderComponent.class).getConnectedLadder() ==
-                        b.getComponent(LadderComponent.class).getConnectedLadder()) {
-                        a.getComponent(PlayerComponent.class).teleport(ladder.getCenter());
-                    }
-                }
-            }
-        });
-        FXGL.getPhysicsWorld().addCollisionHandler( // end level
-                new CollisionHandler(EntityType.PLAYER, EntityType.EXIT) {
-                    @Override
-                    protected void onCollisionBegin(Entity a, Entity b) {
-                        levelEndScene.onLevelEnd();
-                    }
-                });
-        FXGL.getPhysicsWorld().addCollisionHandler(
-                new CollisionHandler(EntityType.PLAYER, EntityType.POTION) {
-                    @Override
-                    protected void onCollisionBegin(Entity a, Entity b) {
-                        b.getComponent(PotionComponent.class).restoreHealth(a.getComponent(PlayerComponent.class));
-                        b.removeFromWorld();
-                        healthBars = updateHealth(healthBars);
-                    }
-                }
-        );
+    private HBox getHealthBar(String texturePlayer, DoubleProperty health) {
+        HBox hBox = new HBox(20.0);
+        hBox.setAlignment(Pos.BASELINE_LEFT);
+
+        Texture texture = getAssetLoader().loadTexture(texturePlayer);
+        texture.setScaleX(2.0);
+        texture.setScaleY(2.0);
+        hBox.getChildren().add(texture);
+
+        for (int i = 1; i <= 3; i++) {
+            BooleanProperty isFull = new SimpleBooleanProperty();
+            isFull.bind(health.greaterThanOrEqualTo(i));
+            BooleanProperty isEmpty = new SimpleBooleanProperty();
+            isEmpty.bind(health.lessThanOrEqualTo(i - 1));
+
+            Texture heart = getAssetLoader().loadTexture("heart/ui_heart_full.png");
+            heart.setScaleX(2.0);
+            heart.setScaleY(2.0);
+            heart.imageProperty().bind(Bindings.createObjectBinding(
+                    () -> {
+                        if (isFull.get())
+                            return image("heart/ui_heart_full.png");
+                        else if (isEmpty.get())
+                            return image("heart/ui_heart_empty.png");
+                        else
+                            return image("heart/ui_heart_half.png");
+                    },
+                    isFull, isEmpty));
+            hBox.getChildren().add(heart);
+        }
+        return hBox;
+    }
+
+    @Override
+    protected void initUI() {
+        GridPane gameUI = new GridPane();
+
+        VBox healthUI = new VBox(30.0,
+                getHealthBar(texturePlayer1.get() + "0.png",
+                        player1.getComponent(HealthDoubleComponent.class).valueProperty()),
+                getHealthBar(texturePlayer2.get() + "0.png",
+                        player2.getComponent(HealthDoubleComponent.class).valueProperty()));
+        healthUI.setAlignment(Pos.TOP_LEFT);
+        healthUI.setPadding(new Insets(20.0));
+
+        Text textLevel = getUIFactoryService().newText("", Color.WHITE, 32.0);
+        Text textTime = getUIFactoryService().newText("", Color.WHITE, 32.0);
+        textTime.textProperty().bind(Bindings.createStringBinding(
+                () -> {
+                    int seconds = (int) getdp("levelTime").get();
+                    return Math.min(59, seconds / 60) + ":" + Math.min(59, seconds % 60);
+                },
+                getdp("levelTime")));
+        textLevel.textProperty().bind(Bindings.createStringBinding(
+                () -> "Level " + geti("level"),
+                getip("level")));
+        VBox timeUI = new VBox(30.0, textLevel, textTime);
+        timeUI.setAlignment(Pos.TOP_RIGHT);
+        timeUI.setPadding(new Insets(20.0));
+
+        gameUI.add(healthUI, 0, 0);
+        gameUI.add(timeUI, 1, 0);
+        for (int i = 0; i < gameUI.getColumnCount(); i++) {
+            ColumnConstraints columnWidth = new ColumnConstraints();
+            columnWidth.setPrefWidth((double) getAppWidth() / gameUI.getColumnCount());
+            gameUI.getColumnConstraints().add(columnWidth);
+        }
+        getGameScene().addUINode(gameUI);
     }
 
     @Override
     protected void initGame() {
-        gameOverScene = new GameOverScene(this::onPlayerDied);
-        levelEndScene = new LevelEndScene(this::onLevelFinish);
-        gameEndScene = new GameEndScene();
-
-        FXGL.getGameScene().setBackgroundColor(Color.BLACK);
-        FXGL.getGameWorld().addEntityFactory(new DungeonFactory());
-
-        FXGL.getAudioPlayer().stopMusic(musicMenu);
-        FXGL.getAudioPlayer().loopMusic(musicGame);
-
-        FXGL.getGameScene().setCursorInvisible();
-
-        setLevel(currentLevel);
+        getGameScene().setBackgroundColor(Color.BLACK);
+        getGameWorld().addEntityFactory(new DungeonFactory());
+        getAudioPlayer().stopMusic(musicMenu);
+        getAudioPlayer().loopMusic(musicGame);
+        getGameScene().setCursorInvisible();
+        setLevel();
     }
 
     @Override
     protected void onUpdate(double tpf) {
         if (player1.getComponent(PlayerComponent.class).getHealth() == 0.0 ||
-            player2.getComponent(PlayerComponent.class).getHealth() == 0.0) {
-            gameOverScene.onGameOver();
+                player2.getComponent(PlayerComponent.class).getHealth() == 0.0) {
+            new GameOverScene(this::onPlayerDied).onGameOver();
         }
+        inc("levelTime", tpf);
     }
 
-    private VBox updateHealth(VBox prevHealthBars) {
-        VBox vbox = new VBox(2.0);
-        vbox.setPadding(new Insets(8.0));
-
-        Entity[] players = { player1, player2 };
-        Arrays.stream(players).forEach(player -> {
-            HBox hbox = new HBox(2.0);
-            hbox.setAlignment(Pos.BASELINE_CENTER);
-
-            double health = player.getComponent(PlayerComponent.class).getHealth();
-
-            hbox.getChildren().add(FXGL.getAssetLoader().loadTexture(FXGL.gets(
-                    "idlePlayer" + player.getProperties().getValue("type")) + "0.png"));
-            for (int i = 0; i < Math.floor(health); i++) {
-                hbox.getChildren().add(FXGL.getAssetLoader().loadTexture("heart/ui_heart_full.png"));
-            }
-            if (Math.ceil(health) > Math.floor(health)) {
-                hbox.getChildren().add(FXGL.getAssetLoader().loadTexture("heart/ui_heart_half.png"));
-            }
-            for (int i = 0; i < 3 - Math.ceil(health); i++) {
-                hbox.getChildren().add(FXGL.getAssetLoader().loadTexture("heart/ui_heart_empty.png"));
-            }
-
-            vbox.getChildren().add(hbox);
-        });
-
-        if (prevHealthBars != null)
-            FXGL.getGameScene().getContentRoot().getChildren().remove(prevHealthBars);
-        FXGL.getGameScene().getContentRoot().getChildren().add(vbox);
-
-        return vbox;
-    }
-
-    public void setLevel(int level) {
-        currentLevel = level;
-
-        FXGL.setLevelFromMap("tmx/level" + level + ".tmx");
-
-        FXGL.getGameWorld().getEntitiesByType(EntityType.PLAYER).forEach(player -> {
+    public void setLevel() {
+        setLevelFromMap("tmx/level" + geti("level") + ".tmx");
+        getGameWorld().getEntitiesByType(EntityType.PLAYER).forEach(player -> {
             if (player.getProperties().getValue("type").equals(1))
                 player1 = player;
             else
                 player2 = player;
         });
 
-        Viewport viewport = FXGL.getGameScene().getViewport();
-        viewport.bindToFit(FXGL.getAppWidth() / 8.0, FXGL.getAppHeight() / 8.0, player1, player2);
-        viewport.setLazy(true); // feels better
-
-        healthBars = updateHealth(null);
+        Viewport viewport = getGameScene().getViewport();
+        viewport.bindToFit(getAppWidth() / 8.0, getAppHeight() / 8.0, player1, player2);
+        viewport.setLazy(true);
     }
 
     public void onPlayerDied() {
-        setLevel(currentLevel);
+        setLevel();
     }
 
-    public void onLevelFinish() {
-        currentLevel++;
-
-        if (currentLevel == 3) { // 3 is MAX_LEVEL
-            gameEndScene.onGameEnd();
-        } else {
-            setLevel(currentLevel);
-        }
+    public void onLevelEnded() {
+        set("levelTime", 0.0);
+        inc("level", 1);
+        if (geti("level") <= 3) // 3 is MAX_LEVEL
+            setLevel();
+        else
+            new GameEndScene().onGameEnd();
     }
 
     public static void main(String[] args) {

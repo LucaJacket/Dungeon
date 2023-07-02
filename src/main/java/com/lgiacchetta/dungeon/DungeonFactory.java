@@ -1,6 +1,7 @@
 package com.lgiacchetta.dungeon;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.dsl.components.HealthDoubleComponent;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
@@ -10,13 +11,16 @@ import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
+import com.almasb.fxgl.texture.Texture;
+import com.lgiacchetta.dungeon.component.PlayerComponent;
+import com.lgiacchetta.dungeon.component.SpikeComponent;
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.image.Image;
 
-import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class DungeonFactory implements EntityFactory {
+
     @Spawns("wall")
     public Entity newWall(SpawnData data) {
         return FXGL.entityBuilder(data)
@@ -26,177 +30,12 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 
-/*
-    @Spawns("orc_boss")
-    public Entity newOrcBoss(SpawnData data) {
-        PhysicsComponent physics = new PhysicsComponent();
-        physics.setBodyType(BodyType.DYNAMIC); // AI controlled
-
-        return entityBuilder(data)
-                .type(EntityType.ORC_BOSS)
-                .bbox(new HitBox(new Point2D(6, 10), BoundingShape.box(20, 26)))
-                .with(physics)
-                .with(new CollidableComponent(true))
-                .with(new MobComponent(
-                        "orc/boss/ogre_idle_anim_f", 4,
-                        "orc/boss/ogre_run_anim_f", 4
-                ))
-                .build();
-    }
-
-    @Spawns("orc_normal")
-    public Entity newOrcNormal(SpawnData data) {
-        PhysicsComponent physics = new PhysicsComponent();
-        physics.setBodyType(BodyType.DYNAMIC); // AI controlled
-
-        return entityBuilder(data)
-                .type(EntityType.ORC_NORMAL)
-                .bbox(new HitBox(new Point2D(4, 7), BoundingShape.box(10, 16)))
-                .with(physics)
-                .with(new CollidableComponent(true))
-                .with(new MobComponent(
-                        "orc/normal/orc_warrior_idle_anim_f", 4,
-                        "orc/normal/orc_warrior_run_anim_f", 4
-                ))
-                .build();
-    }
-
-    @Spawns("orc_tiny")
-    public Entity newOrcTiny(SpawnData data) {
-        PhysicsComponent physics = new PhysicsComponent();
-        physics.setBodyType(BodyType.DYNAMIC); // AI controlled
-
-        return entityBuilder(data)
-                .type(EntityType.ORC_TINY)
-                .bbox(new HitBox(new Point2D(4, 6), BoundingShape.box(9, 10)))
-                .with(physics)
-                .with(new CollidableComponent(true))
-                .with(new MobComponent(
-                        "orc/tiny/goblin_idle_anim_f", 4,
-                        "orc/tiny/goblin_run_anim_f", 4
-                ))
-                .build();
-    }
-
-    @Spawns("demon_boss")
-    public Entity newDemonBoss(SpawnData data) {
-        PhysicsComponent physics = new PhysicsComponent();
-        physics.setBodyType(BodyType.DYNAMIC); // AI controlled
-
-        return entityBuilder(data)
-                .type(EntityType.DEMON_BOSS)
-                .bbox(new HitBox(new Point2D(6, 10), BoundingShape.box(20, 26)))
-                .with(physics)
-                .with(new CollidableComponent(true))
-                .with(new MobComponent(
-                        "demon/boss/big_demon_idle_anim_f", 4,
-                        "demon/boss/big_demon_run_anim_f", 4
-                ))
-                .build();
-    }
-
-    @Spawns("demon_normal")
-    public Entity newDemonNormal(SpawnData data) {
-        PhysicsComponent physics = new PhysicsComponent();
-        physics.setBodyType(BodyType.DYNAMIC); // AI controlled
-
-        return entityBuilder(data)
-                .type(EntityType.DEMON_NORMAL)
-                .bbox(new HitBox(new Point2D(3, 7), BoundingShape.box(10, 16)))
-                .with(physics)
-                .with(new CollidableComponent(true))
-                .with(new MobComponent(
-                        "demon/normal/chort_idle_anim_f", 4,
-                        "demon/normal/chort_run_anim_f", 4
-                ))
-                .build();
-    }
-
-    @Spawns("demon_tiny")
-    public Entity newDemonTiny(SpawnData data) {
-        PhysicsComponent physics = new PhysicsComponent();
-        physics.setBodyType(BodyType.DYNAMIC); // AI controlled
-
-        return entityBuilder(data)
-                .type(EntityType.DEMON_TINY)
-                .bbox(new HitBox(new Point2D(4, 6), BoundingShape.box(9, 10)))
-                .with(physics)
-                .with(new CollidableComponent(true))
-                .with(new MobComponent(
-                        "demon/tiny/imp_idle_anim_f", 4,
-                        "demon/tiny/imp_run_anim_f", 4
-                ))
-                .build();
-    }
-
-    @Spawns("undead_boss")
-    public Entity newUndeadBoss(SpawnData data) {
-        PhysicsComponent physics = new PhysicsComponent();
-        physics.setBodyType(BodyType.DYNAMIC); // AI controlled
-
-        return entityBuilder(data)
-                .type(EntityType.UNDEAD_BOSS)
-                .bbox(new HitBox(new Point2D(7, 9), BoundingShape.box(18, 27)))
-                .with(physics)
-                .with(new CollidableComponent(true))
-                .with(new MobComponent(
-                        "undead/boss/big_zombie_idle_anim_f", 4,
-                        "undead/boss/big_zombie_run_anim_f", 4
-                ))
-                .build();
-    }
-
-    @Spawns("undead_normal")
-    public Entity newUndeadNormal(SpawnData data) {
-        PhysicsComponent physics = new PhysicsComponent();
-        physics.setBodyType(BodyType.DYNAMIC); // AI controlled
-
-        return entityBuilder(data)
-                .type(EntityType.UNDEAD_NORMAL)
-                .bbox(new HitBox(new Point2D(4, 1), BoundingShape.box(8, 15)))
-                .with(physics)
-                .with(new CollidableComponent(true))
-                .with(new MobComponent(
-                        "undead/normal/zombie_anim_f", 4,
-                        "undead/normal/zombie_anim_f", 4
-                ))
-                .build();
-    }
-
-    @Spawns("undead_tiny")
-    public Entity newUndeadTiny(SpawnData data) {
-        PhysicsComponent physics = new PhysicsComponent();
-        physics.setBodyType(BodyType.DYNAMIC); // AI controlled
-
-        return entityBuilder(data)
-                .type(EntityType.UNDEAD_TINY)
-                .bbox(new HitBox(new Point2D(4, 6), BoundingShape.box(9, 10)))
-                .with(physics)
-                .with(new CollidableComponent(true))
-                .with(new MobComponent(
-                        "undead/tiny/tiny_zombie_idle_anim_f", 4,
-                        "undead/tiny/tiny_zombie_run_anim_f", 4
-                ))
-                .build();
-    }
-*/
-    @Spawns("door")
-    public Entity newDoor(SpawnData data) {
+    @Spawns("trigger")
+    public Entity newTrigger(SpawnData data) {
         return FXGL.entityBuilder(data)
-                .type(EntityType.DOOR)
+                .type(EntityType.TRIGGER)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new PhysicsComponent())
-                .with(new DoorComponent(data.get("connected")))
-                .build();
-    }
-
-    @Spawns("exit")
-    public Entity newExit(SpawnData data) {
-        return FXGL.entityBuilder(data)
-                .type(EntityType.EXIT)
-                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new PhysicsComponent())
-                .with(new DoorComponent(data.get("connected")))
+                .with(new CollidableComponent(true))
                 .build();
     }
 
@@ -205,19 +44,51 @@ public class DungeonFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .type(EntityType.POTION)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new PhysicsComponent())
                 .with(new CollidableComponent(true))
-                .with(new PotionComponent(1.0))
+                .view("potion/flask_big_green.png")
                 .build();
+    }
+
+    @Spawns("door")
+    public Entity newDoor(SpawnData data) {
+        Image open = image("door/doors_leaf_open.png");
+        Image closed = image("door/doors_leaf_closed.png");
+        Texture texture = new Texture(closed);
+
+        return FXGL.entityBuilder(data)
+                .type(EntityType.DOOR)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .with("texture", texture)
+                .with("open", open)
+                .with("closed", closed)
+                .view(texture)
+                .build();
+    }
+
+    @Spawns("exit")
+    public Entity newExit(SpawnData data) {
+        Entity exit = newDoor(data);
+        exit.setType(EntityType.EXIT);
+        exit.addComponent(new CollidableComponent(true));
+        return exit;
     }
 
     @Spawns("plate")
     public Entity newPlate(SpawnData data) {
+        Image up = image("plate/button_" + data.get("color") + "_up.png");
+        Image down = image("plate/button_" + data.get("color") + "_down.png");
+        Texture texture = new Texture(up);
+
         return entityBuilder(data)
                 .type(EntityType.PLATE)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
-                .with(new PlateComponent(data.get("color"), data.get("connected")))
+                .with("texture", texture)
+                .with("up", up)
+                .with("down", down)
+                .with("playerPressing", 0)
+                .view(texture)
                 .build();
     }
 
@@ -227,7 +98,7 @@ public class DungeonFactory implements EntityFactory {
                 .type(EntityType.LADDER)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
-                .with(new LadderComponent(data.get("connected")))
+                .view("ladder/floor_ladder.png")
                 .build();
     }
 
@@ -249,11 +120,12 @@ public class DungeonFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(EntityType.PLAYER)
                 .bbox(new HitBox(new Point2D(2, 12), BoundingShape.box(12, 16)))
-                .with(physics)
                 .with(new CollidableComponent(true))
+                .with(physics)
+                .with(new HealthDoubleComponent(3.0))
                 .with(new PlayerComponent(
-                        FXGL.gets("idlePlayer" + data.getData().get("type")),
-                        FXGL.gets("walkPlayer" + data.getData().get("type"))))
+                        gets("idlePlayer" + data.getData().get("type")),
+                        gets("walkPlayer" + data.getData().get("type"))))
                 .build();
     }
 }
