@@ -1,7 +1,6 @@
 package com.lgiacchetta.dungeon;
 
 import com.almasb.fxgl.audio.Music;
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.beans.binding.Bindings;
 import javafx.scene.effect.DropShadow;
@@ -16,8 +15,7 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.almasb.fxgl.dsl.FXGL.getAssetLoader;
-import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Utils {
     public static final Music musicGame = getAssetLoader().loadMusic("melody.wav");
@@ -26,7 +24,7 @@ public class Utils {
     public static AnimationChannel getAnimation(String filename, int nFrames, double seconds) {
         List<Image> list = new ArrayList<>();
         for (int i = 0; i < nFrames; i++)
-            list.add(FXGL.image(filename + i + ".png"));
+            list.add(image(filename + i + ".png"));
         return new AnimationChannel(list, Duration.seconds(seconds));
     }
 

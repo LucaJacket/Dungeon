@@ -1,6 +1,5 @@
 package com.lgiacchetta.dungeon.component;
 
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.HealthDoubleComponent;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
@@ -9,6 +8,7 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 
+import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.lgiacchetta.dungeon.Utils.*;
 
 public class PlayerComponent extends Component {
@@ -22,7 +22,7 @@ public class PlayerComponent extends Component {
     private double lastTeleported;
 
     public PlayerComponent(String idleAsset, String walkAsset) {
-        lastDamaged = lastTeleported = FXGL.getGameTimer().getNow();
+        lastDamaged = lastTeleported = getGameTimer().getNow();
         idle = getAnimation(idleAsset, 4, 1.0);
         walk = getAnimation(walkAsset, 4, 0.5);
         texture = new AnimatedTexture(idle);
@@ -69,29 +69,29 @@ public class PlayerComponent extends Component {
     }
 
     public void damage(double amount) {
-        double now = FXGL.getGameTimer().getNow();
+        double now = getGameTimer().getNow();
         if (now - lastDamaged >= 1.0) { // damage cooldown
             lastDamaged = now;
             health.damage(amount);
-            FXGL.getGameTimer().runAtInterval(() -> texture.setVisible(!texture.isVisible()),
+            getGameTimer().runAtInterval(() -> texture.setVisible(!texture.isVisible()),
                     Duration.seconds(0.1), 8);
-            FXGL.play("damage.wav");
+            play("damage.wav");
         }
     }
 
     public void restore(double amount) {
         health.restore(amount);
-        FXGL.getGameTimer().runAtInterval(() -> texture.setVisible(!texture.isVisible()),
+        getGameTimer().runAtInterval(() -> texture.setVisible(!texture.isVisible()),
                 Duration.seconds(0.1), 8);
-        FXGL.play("heal.wav");
+        play("heal.wav");
     }
 
     public void teleport(Point2D location) {
-        double now = FXGL.getGameTimer().getNow();
+        double now = getGameTimer().getNow();
         if (now - lastTeleported >= 4.0) { // teleport cooldown
             lastTeleported = now;
             physics.overwritePosition(location);
-            FXGL.play("ladder.wav");
+            play("ladder.wav");
         }
     }
 }

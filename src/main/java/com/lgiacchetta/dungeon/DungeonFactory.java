@@ -1,6 +1,5 @@
 package com.lgiacchetta.dungeon;
 
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.HealthDoubleComponent;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
@@ -23,7 +22,7 @@ public class DungeonFactory implements EntityFactory {
 
     @Spawns("wall")
     public Entity newWall(SpawnData data) {
-        return FXGL.entityBuilder(data)
+        return entityBuilder(data)
                 .type(EntityType.WALL)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
@@ -32,7 +31,7 @@ public class DungeonFactory implements EntityFactory {
 
     @Spawns("trigger")
     public Entity newTrigger(SpawnData data) {
-        return FXGL.entityBuilder(data)
+        return entityBuilder(data)
                 .type(EntityType.TRIGGER)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
@@ -41,7 +40,7 @@ public class DungeonFactory implements EntityFactory {
 
     @Spawns("potion")
     public Entity newPotion(SpawnData data) {
-        return FXGL.entityBuilder(data)
+        return entityBuilder(data)
                 .type(EntityType.POTION)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
@@ -55,7 +54,7 @@ public class DungeonFactory implements EntityFactory {
         Image closed = image("door/doors_leaf_closed.png");
         Texture texture = new Texture(closed);
 
-        return FXGL.entityBuilder(data)
+        return entityBuilder(data)
                 .type(EntityType.DOOR)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())

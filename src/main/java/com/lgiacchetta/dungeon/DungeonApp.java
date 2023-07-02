@@ -7,7 +7,6 @@ import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.HealthDoubleComponent;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.UserAction;
@@ -51,6 +50,9 @@ public class DungeonApp extends GameApplication {
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
         settings.setHeight(720);
+        settings.setTitle("Dungeon");
+        settings.setVersion("1.0");
+        settings.setAppIcon("chest/chest_full_open_anim_f2.png");
         settings.setMainMenuEnabled(true);
         settings.setDefaultCursor(new CursorInfo("cursor.png", 5.0, 3.0));
         settings.setFontGame("alagard.ttf");
@@ -183,14 +185,14 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        FXGL.getPhysicsWorld().setGravity(0.0,0.0);
-        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerPlayerHandler());
-        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerSpikeHandler());
-        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerPlateHandler());
-        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerLadderHandler());
-        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerExitHandler(this::onLevelEnded));
-        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerPotionHandler());
-        FXGL.getPhysicsWorld().addCollisionHandler(new PlayerTriggerHandler());
+        getPhysicsWorld().setGravity(0.0,0.0);
+        getPhysicsWorld().addCollisionHandler(new PlayerPlayerHandler());
+        getPhysicsWorld().addCollisionHandler(new PlayerSpikeHandler());
+        getPhysicsWorld().addCollisionHandler(new PlayerPlateHandler());
+        getPhysicsWorld().addCollisionHandler(new PlayerLadderHandler());
+        getPhysicsWorld().addCollisionHandler(new PlayerExitHandler(this::onLevelEnded));
+        getPhysicsWorld().addCollisionHandler(new PlayerPotionHandler());
+        getPhysicsWorld().addCollisionHandler(new PlayerTriggerHandler());
     }
 
     private HBox getHealthBar(String texturePlayer, DoubleProperty health) {
