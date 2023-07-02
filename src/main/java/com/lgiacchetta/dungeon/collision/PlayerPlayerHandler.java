@@ -6,6 +6,7 @@ import com.lgiacchetta.dungeon.EntityType;
 import com.lgiacchetta.dungeon.component.PlayerComponent;
 
 public class PlayerPlayerHandler extends CollisionHandler {
+
     public PlayerPlayerHandler() {
         super(EntityType.PLAYER, EntityType.PLAYER);
     }

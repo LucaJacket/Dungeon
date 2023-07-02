@@ -10,8 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
-import static com.almasb.fxgl.dsl.FXGL.getSceneService;
-import static com.lgiacchetta.dungeon.Utils.getAnimation;
+import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.lgiacchetta.dungeon.Utils.*;
 
 public class SkinSelector extends HBox {
     private final AnimatedTexture texture;

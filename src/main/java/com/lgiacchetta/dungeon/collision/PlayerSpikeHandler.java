@@ -7,6 +7,7 @@ import com.lgiacchetta.dungeon.component.PlayerComponent;
 import com.lgiacchetta.dungeon.component.SpikeComponent;
 
 public class PlayerSpikeHandler extends CollisionHandler {
+
     public PlayerSpikeHandler() {
         super(EntityType.PLAYER, EntityType.SPIKE);
     }

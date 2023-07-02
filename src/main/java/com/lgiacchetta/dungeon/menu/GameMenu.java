@@ -17,6 +17,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.lgiacchetta.dungeon.Utils.*;
 
 public class GameMenu extends FXGLMenu {
+
     public GameMenu() {
         super(MenuType.GAME_MENU);
 

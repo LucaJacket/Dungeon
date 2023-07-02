@@ -11,6 +11,7 @@ import com.lgiacchetta.dungeon.component.PlayerComponent;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class PlayerPlateHandler extends CollisionHandler {
+
     public PlayerPlateHandler() {
         super(EntityType.PLAYER, EntityType.PLATE);
     }

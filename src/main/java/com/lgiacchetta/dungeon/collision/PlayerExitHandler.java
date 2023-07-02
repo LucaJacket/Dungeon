@@ -7,6 +7,7 @@ import com.lgiacchetta.dungeon.scene.LevelEndScene;
 
 public class PlayerExitHandler extends CollisionHandler {
     private final Runnable onLevelEnded;
+
     public PlayerExitHandler(Runnable onLevelEnded) {
         super(EntityType.PLAYER, EntityType.EXIT);
         this.onLevelEnded = onLevelEnded;
