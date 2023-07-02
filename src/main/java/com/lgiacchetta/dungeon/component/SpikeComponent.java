@@ -1,10 +1,10 @@
 package com.lgiacchetta.dungeon.component;
 
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 
+import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.lgiacchetta.dungeon.Utils.*;
 
 public class SpikeComponent extends Component {
@@ -32,7 +32,7 @@ public class SpikeComponent extends Component {
             if (texture.getAnimationChannel() == safe) {
                 texture.loopAnimationChannel(danger);
                 isDangerous = true;
-                FXGL.play("spike.wav");
+                play("spike.wav");
             } else {
                 texture.loopAnimationChannel(safe);
                 isDangerous = false;

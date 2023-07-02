@@ -1,6 +1,5 @@
 package com.lgiacchetta.dungeon.collision;
 
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.PhysicsComponent;
@@ -9,7 +8,7 @@ import com.almasb.fxgl.texture.Texture;
 import com.lgiacchetta.dungeon.EntityType;
 import com.lgiacchetta.dungeon.component.PlayerComponent;
 
-import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class PlayerPlateHandler extends CollisionHandler {
     public PlayerPlateHandler() {
@@ -53,12 +52,12 @@ public class PlayerPlateHandler extends CollisionHandler {
                     Texture doorTexture = door.getProperties().getValue("texture");
                     Body body = door.getComponent(PhysicsComponent.class).getBody();
                     if (body.isActive()) { // door is closed
-                        FXGL.play("door-open.wav");
+                        play("door-open.wav");
                         doorTexture.setImage(door.getProperties().getValue("open"));
                         if (door.getType().equals(EntityType.DOOR)) // exclude exit door
                             body.setActive(false); // open door physically
                     } else {
-                        FXGL.play("door-close.wav");
+                        play("door-close.wav");
                         doorTexture.setImage(door.getProperties().getValue("closed"));
                         if (door.getType().equals(EntityType.DOOR)) // exclude exit door
                             body.setActive(true); // close door physically

@@ -10,6 +10,7 @@ public class CircularList<T> {
     public CircularList(T...elements) {
         Arrays.stream(elements).forEach(this::addNode);
     }
+    
     public void addNode(T data) {
         CircularListNode<T> newNode = new CircularListNode<>(data);
         if (head == null) {
