@@ -274,6 +274,12 @@
   </object>
   <object id="84" name="blue-door" type="door" x="912" y="624" width="32" height="17"/>
   <object id="85" name="red-door" type="door" x="736" y="624" width="32" height="17"/>
+  <object id="86" name="player1" type="player" x="928" y="64">
+   <point/>
+  </object>
+  <object id="87" name="player2" type="player" x="192" y="80">
+   <point/>
+  </object>
   <object id="88" name="blue-plate" type="plate" x="800" y="48.3333" width="16" height="2">
    <properties>
     <property name="color" value="blue"/>
@@ -548,17 +554,5 @@
   <object id="354" name="spike" type="spike" x="176" y="528" width="16" height="2"/>
   <object id="355" name="spike" type="spike" x="176" y="496" width="16" height="2"/>
   <object id="356" name="spike" type="spike" x="176" y="560" width="16" height="2"/>
-  <object id="86" name="player1" type="player" x="928" y="64">
-   <properties>
-    <property name="type" type="int" value="1"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="87" name="player2" type="player" x="192" y="80">
-   <properties>
-    <property name="type" type="int" value="2"/>
-   </properties>
-   <point/>
-  </object>
  </objectgroup>
 </map>
