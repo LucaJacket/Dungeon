@@ -8,7 +8,8 @@ import com.almasb.fxgl.texture.Texture;
 import com.lgiacchetta.dungeon.EntityType;
 import com.lgiacchetta.dungeon.component.PlayerComponent;
 
-import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
+import static com.almasb.fxgl.dsl.FXGL.play;
 
 public class PlayerPlateHandler extends CollisionHandler {
 

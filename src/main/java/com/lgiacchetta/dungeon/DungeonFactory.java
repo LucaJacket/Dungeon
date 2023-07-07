@@ -75,8 +75,8 @@ public class DungeonFactory implements EntityFactory {
 
     @Spawns("plate")
     public Entity newPlate(SpawnData data) {
-        Image up = image("plate/button_" + data.get("color") + "_up.png");
-        Image down = image("plate/button_" + data.get("color") + "_down.png");
+        Image up = image("plate/button_" + data.<String>get("color") + "_up.png");
+        Image down = image("plate/button_" + data.<String>get("color") + "_down.png");
         Texture texture = new Texture(up);
 
         return entityBuilder(data)
@@ -123,8 +123,8 @@ public class DungeonFactory implements EntityFactory {
                 .with(physics)
                 .with(new HealthDoubleComponent(3.0))
                 .with(new PlayerComponent(
-                        gets("idlePlayer" + data.getData().get("type")),
-                        gets("walkPlayer" + data.getData().get("type"))))
+                        gets("idlePlayer" + data.<Integer>get("type")),
+                        gets("walkPlayer" + data.<Integer>get("type"))))
                 .build();
     }
 }

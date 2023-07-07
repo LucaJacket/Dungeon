@@ -14,8 +14,8 @@ public class SpikeComponent extends Component {
     private boolean isDangerous;
 
     public SpikeComponent() {
-        safe = getAnimation("spike/floor_spikes_anim_f", 8, 4.0);
-        danger = getAnimation("spike/floor_spikes_danger_anim_f", 1, 2.0);
+        safe = getAnimationChannel("spike/floor_spikes_anim_f", 8, 4.0);
+        danger = getAnimationChannel("spike/floor_spikes_danger_anim_f", 1, 2.0);
         texture = new AnimatedTexture(safe);
         texture.loop();
         isDangerous = false;

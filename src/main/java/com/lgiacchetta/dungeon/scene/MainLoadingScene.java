@@ -7,10 +7,10 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.util.Arrays;
-
-import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.lgiacchetta.dungeon.Utils.*;
+import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
+import static com.almasb.fxgl.dsl.FXGL.image;
+import static com.lgiacchetta.dungeon.Utils.MAIN_LOADING_CHARACTERS;
+import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
 
 public class MainLoadingScene extends LoadingScene {
     public MainLoadingScene() {
@@ -21,12 +21,8 @@ public class MainLoadingScene extends LoadingScene {
 
         HBox hBox = new HBox(48.0);
         hBox.setAlignment(Pos.CENTER);
-        Arrays.stream(new String[]{
-                        "orc/boss/ogre_run_anim_f",
-                        "demon/boss/big_demon_run_anim_f",
-                        "undead/boss/big_zombie_run_anim_f",
-                        "hero/knight_m_run_anim_f"})
-                .map(asset -> new AnimatedTexture(getAnimation(asset, 4, 0.5)))
+        MAIN_LOADING_CHARACTERS.stream()
+                .map(asset -> new AnimatedTexture(getAnimationChannel(asset, 4, 0.5)))
                 .forEach(texture -> {
                     texture.loop();
                     this.addListener(texture);

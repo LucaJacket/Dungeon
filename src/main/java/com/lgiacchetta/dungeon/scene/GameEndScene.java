@@ -17,7 +17,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.lgiacchetta.dungeon.Utils.*;
+import static com.lgiacchetta.dungeon.Utils.MUSIC_GAME;
+import static com.lgiacchetta.dungeon.Utils.MUSIC_MENU;
 
 public class GameEndScene extends SubScene {
     private final BooleanProperty isAnimationDone;
@@ -29,7 +30,7 @@ public class GameEndScene extends SubScene {
         Rectangle bg = new Rectangle(1000.0, 400.0, Color.BLACK);
         bg.setStroke(Color.YELLOW);
         bg.setStrokeWidth(4.0);
-        bg.setEffect(new DropShadow(64.0, Color.color(0,0,0, 0.9)));
+        bg.setEffect(new DropShadow(64.0, Color.color(0, 0, 0, 0.9)));
 
         Text textCongratulations = getUIFactoryService().newText(
                 "CONGRATULATIONS", Color.YELLOW, 104.0);
@@ -40,7 +41,7 @@ public class GameEndScene extends SubScene {
         Text textGameDevelopers = getUIFactoryService().newText(
                 "developed by Sofia Vita & Luca Giacchetta", Color.WHITE, 20.0);
         Text textContinue = getUIFactoryService().newText(
-                "Press Enter to go back to main menu",  Color.WHITE, 32.0);
+                "Press Enter to go back to main menu", Color.WHITE, 32.0);
 
         VBox vBox = new VBox(40.0,
                 textCongratulations,
@@ -84,7 +85,7 @@ public class GameEndScene extends SubScene {
                 if (isAnimationDone.get()) {
                     getSceneService().popSubScene();
                     getGameController().gotoMainMenu();
-                    getAudioPlayer().loopMusic(musicMenu);
+                    getAudioPlayer().loopMusic(MUSIC_MENU);
                 }
             }
         }, KeyCode.ENTER);
@@ -92,7 +93,7 @@ public class GameEndScene extends SubScene {
 
     public void onGameEnd() {
         getSceneService().pushSubScene(this);
-        getAudioPlayer().stopMusic(musicGame);
+        getAudioPlayer().stopMusic(MUSIC_GAME);
         play("level-win.wav");
     }
 }

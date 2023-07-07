@@ -3,4 +3,5 @@ open module com.lgiacchetta.dungeon {
     requires javafx.fxml;
 
     requires com.almasb.fxgl.all;
+    requires org.jetbrains.annotations;
 }

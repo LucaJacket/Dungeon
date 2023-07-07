@@ -6,7 +6,8 @@ import com.almasb.fxgl.physics.CollisionHandler;
 import com.lgiacchetta.dungeon.EntityType;
 import com.lgiacchetta.dungeon.component.PlayerComponent;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -32,7 +33,7 @@ public class PlayerTriggerHandler extends CollisionHandler {
         Rectangle bg = new Rectangle(400.0, 200.0, Color.BLACK);
         bg.setStroke(Color.YELLOW);
         bg.setStrokeWidth(4.0);
-        bg.setEffect(new DropShadow(64.0, Color.color(0,0,0, 0.9)));
+        bg.setEffect(new DropShadow(64.0, Color.color(0, 0, 0, 0.9)));
 
         Pane prompt = new StackPane(bg, txt);
         prompt.setTranslateX(getAppWidth() - 420.0);

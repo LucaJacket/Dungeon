@@ -2,6 +2,7 @@ package com.lgiacchetta.dungeon.scene;
 
 import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.animation.Interpolators;
+import com.almasb.fxgl.dsl.components.HealthDoubleComponent;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.scene.SubScene;
 import com.almasb.fxgl.texture.AnimatedTexture;
@@ -23,7 +24,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.lgiacchetta.dungeon.Utils.*;
+import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
+import static com.lgiacchetta.dungeon.Utils.MUSIC_GAME;
 
 public class LevelEndScene extends SubScene {
     private final BooleanProperty isAnimationDone;
@@ -35,7 +37,7 @@ public class LevelEndScene extends SubScene {
         Rectangle bg = new Rectangle(1000.0, 400.0, Color.BLACK);
         bg.setStroke(Color.YELLOW);
         bg.setStrokeWidth(4.0);
-        bg.setEffect(new DropShadow(64.0, Color.color(0,0,0, 0.9)));
+        bg.setEffect(new DropShadow(64.0, Color.color(0, 0, 0, 0.9)));
 
         Text textEndScene = getUIFactoryService().newText(
                 "LEVEL COMPLETED", Color.YELLOW, 104.0);
@@ -44,7 +46,7 @@ public class LevelEndScene extends SubScene {
 
         int points = 0;
         points += getGameWorld().getEntitiesByComponent(PlayerComponent.class).stream()
-                .filter(entity -> entity.getComponent(PlayerComponent.class).getHealth() == 3.0)
+                .filter(entity -> entity.getComponent(HealthDoubleComponent.class).getValue() == 3.0)
                 .count();
         if (getd("levelTime") < 180) points++;
 
@@ -52,8 +54,8 @@ public class LevelEndScene extends SubScene {
         hBox.setPadding(new Insets(40.0));
         hBox.setAlignment(Pos.CENTER);
         for (int i = 1; i <= 3; i++) {
-            AnimationChannel open = getAnimation("chest/chest_full_open_anim_f", 3, 1.0);
-            AnimationChannel closed = getAnimation("chest/chest_full_open_anim_f", 1, 1.0);
+            AnimationChannel open = getAnimationChannel("chest/chest_full_open_anim_f", 3, 1.0);
+            AnimationChannel closed = getAnimationChannel("chest/chest_full_open_anim_f", 1, 1.0);
             AnimatedTexture texture = new AnimatedTexture(i <= points ? open : closed);
             this.addListener(texture);
             Animation<?> animation = animationBuilder()
@@ -106,7 +108,7 @@ public class LevelEndScene extends SubScene {
             protected void onActionBegin() {
                 if (isAnimationDone.get()) {
                     getSceneService().popSubScene();
-                    getAudioPlayer().loopMusic(musicGame);
+                    getAudioPlayer().loopMusic(MUSIC_GAME);
                     onLevelEnded.run();
                 }
             }
@@ -116,7 +118,7 @@ public class LevelEndScene extends SubScene {
 
     public void onLevelEnd() {
         getSceneService().pushSubScene(this);
-        getAudioPlayer().stopMusic(musicGame);
+        getAudioPlayer().stopMusic(MUSIC_GAME);
         play("level-win.wav");
     }
 }
