@@ -21,13 +21,12 @@ public class GameMenu extends FXGLMenu {
     public GameMenu() {
         super(MenuType.GAME_MENU);
 
-        Rectangle shadow = new Rectangle(getAppWidth(), getAppHeight(),
-                Color.color(0, 0, 0, 0.6));
+        Rectangle shadow = new Rectangle(getAppWidth(), getAppHeight(), Color.color(0, 0, 0, 0.6));
 
         Rectangle bg = new Rectangle(800.0, 600.0, Color.BLACK);
         bg.setStroke(Color.YELLOW);
         bg.setStrokeWidth(4.0);
-        bg.setEffect(new DropShadow(64.0, Color.color(0,0,0, 0.9)));
+        bg.setEffect(new DropShadow(64.0, Color.color(0, 0, 0, 0.9)));
 
         Text textPaused = getUIFactoryService().newText("Paused", Color.WHITE, 80.0);
 
@@ -37,37 +36,24 @@ public class GameMenu extends FXGLMenu {
         hBoxMusic.setAlignment(Pos.CENTER);
 
         Text textSounds = getUIFactoryService().newText("Sounds", Color.WHITE, 40.0);
-        Slider sliderSounds = createSlider(getSettings().getGlobalMusicVolume());
+        Slider sliderSounds = createSlider(getSettings().getGlobalSoundVolume());
         HBox hBoxSounds = new HBox(20.0, textSounds, sliderSounds);
         hBoxSounds.setAlignment(Pos.CENTER);
 
-        Pane buttonResume = createActionButton("Apply & Resume", 300.0, 64.0, 32.0,
-                () -> {
-                    getSettings().setGlobalMusicVolume(sliderMusic.getValue());
-                    getSettings().setGlobalSoundVolume(sliderSounds.getValue());
-                    fireResume();
-                });
-        Pane buttonQuit = createActionButton("Quit", 300.0, 64.0, 32.0,
-                () -> {
-                    getGameController().gotoMainMenu();
-                    getAudioPlayer().stopMusic(musicGame);
-                    getAudioPlayer().loopMusic(musicMenu);
-                });
+        Pane buttonResume = createActionButton("Apply & Resume", 300.0, 64.0, 32.0, () -> {
+            getSettings().setGlobalMusicVolume(sliderMusic.getValue());
+            getSettings().setGlobalSoundVolume(sliderSounds.getValue());
+            fireResume();
+        });
+        Pane buttonQuit = createActionButton("Quit", 300.0, 64.0, 32.0, () -> {
+            getGameController().gotoMainMenu();
+            getAudioPlayer().stopMusic(MUSIC_GAME);
+            getAudioPlayer().loopMusic(MUSIC_MENU);
+        });
 
-        VBox vBox = new VBox(40.0,
-                textPaused,
-                hBoxMusic,
-                hBoxSounds,
-                buttonResume,
-                buttonQuit);
+        VBox vBox = new VBox(40.0, textPaused, hBoxMusic, hBoxSounds, buttonResume, buttonQuit);
         vBox.setAlignment(Pos.CENTER);
 
         getContentRoot().getChildren().addAll(new StackPane(shadow, bg, vBox));
-    }
-
-    private Slider createSlider(double value) {
-        Slider slider = new Slider(0.0, 1.0, value);
-        slider.getStylesheets().add("assets/style.css");
-        return slider;
     }
 }

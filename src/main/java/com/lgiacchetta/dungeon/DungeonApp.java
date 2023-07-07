@@ -12,7 +12,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.texture.Texture;
 import com.lgiacchetta.dungeon.collision.*;
-import com.lgiacchetta.dungeon.component.*;
+import com.lgiacchetta.dungeon.component.PlayerComponent;
 import com.lgiacchetta.dungeon.menu.GameMenu;
 import com.lgiacchetta.dungeon.menu.MainMenu;
 import com.lgiacchetta.dungeon.scene.GameEndScene;
@@ -23,27 +23,37 @@ import javafx.beans.property.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.lgiacchetta.dungeon.Utils.*;
+import static com.lgiacchetta.dungeon.Utils.MUSIC_GAME;
+import static com.lgiacchetta.dungeon.Utils.MUSIC_MENU;
 
 public class DungeonApp extends GameApplication {
+    private final static int FINAL_LEVEL = 3;
     private Entity player1;
     private Entity player2;
     private StringProperty texturePlayer1;
     private StringProperty texturePlayer2;
     private IntegerProperty chosenLevel;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     protected void onPreInit() {
         getSettings().setGlobalMusicVolume(0.5);
         getSettings().setGlobalSoundVolume(0.5);
-        getAudioPlayer().loopMusic(musicMenu);
+        getAudioPlayer().loopMusic(MUSIC_MENU);
     }
 
     @Override
@@ -59,23 +69,24 @@ public class DungeonApp extends GameApplication {
         settings.setFontMono("alagard.ttf");
         settings.setFontText("alagard.ttf");
         settings.setFontUI("alagard.ttf");
-        texturePlayer1 = new SimpleStringProperty("hero/knight_m_idle_anim_f");
-        texturePlayer2 = new SimpleStringProperty("hero/knight_f_idle_anim_f");
+
+        texturePlayer1 = new SimpleStringProperty();
+        texturePlayer2 = new SimpleStringProperty();
         chosenLevel = new SimpleIntegerProperty(0);
 
         settings.setSceneFactory(new SceneFactory() {
             @Override
-            public LoadingScene newLoadingScene() {
+            public @NotNull LoadingScene newLoadingScene() {
                 return new MainLoadingScene();
             }
 
             @Override
-            public FXGLMenu newMainMenu() {
+            public @NotNull FXGLMenu newMainMenu() {
                 return new MainMenu(texturePlayer1, texturePlayer2, chosenLevel);
             }
 
             @Override
-            public FXGLMenu newGameMenu() {
+            public @NotNull FXGLMenu newGameMenu() {
                 return new GameMenu();
             }
         });
@@ -185,7 +196,7 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        getPhysicsWorld().setGravity(0.0,0.0);
+        getPhysicsWorld().setGravity(0.0, 0.0);
         getPhysicsWorld().addCollisionHandler(new PlayerPlayerHandler());
         getPhysicsWorld().addCollisionHandler(new PlayerSpikeHandler());
         getPhysicsWorld().addCollisionHandler(new PlayerPlateHandler());
@@ -213,16 +224,11 @@ public class DungeonApp extends GameApplication {
             Texture heart = getAssetLoader().loadTexture("heart/ui_heart_full.png");
             heart.setScaleX(2.0);
             heart.setScaleY(2.0);
-            heart.imageProperty().bind(Bindings.createObjectBinding(
-                    () -> {
-                        if (isFull.get())
-                            return image("heart/ui_heart_full.png");
-                        else if (isEmpty.get())
-                            return image("heart/ui_heart_empty.png");
-                        else
-                            return image("heart/ui_heart_half.png");
-                    },
-                    isFull, isEmpty));
+            heart.imageProperty().bind(Bindings.createObjectBinding(() -> {
+                if (isFull.get()) return image("heart/ui_heart_full.png");
+                else if (isEmpty.get()) return image("heart/ui_heart_empty.png");
+                else return image("heart/ui_heart_half.png");
+            }, isFull, isEmpty));
             hBox.getChildren().add(heart);
         }
         return hBox;
@@ -232,24 +238,21 @@ public class DungeonApp extends GameApplication {
     protected void initUI() {
         GridPane gameUI = new GridPane();
 
-        VBox healthUI = new VBox(30.0,
-                getHealthBar(texturePlayer1.get() + "0.png",
-                        player1.getComponent(HealthDoubleComponent.class).valueProperty()),
-                getHealthBar(texturePlayer2.get() + "0.png",
-                        player2.getComponent(HealthDoubleComponent.class).valueProperty()));
+        HBox healthBarPlayer1 = getHealthBar(texturePlayer1.get() + "0.png",
+                player1.getComponent(HealthDoubleComponent.class).valueProperty());
+        HBox healthBarPlayer2 = getHealthBar(texturePlayer2.get() + "0.png",
+                player2.getComponent(HealthDoubleComponent.class).valueProperty());
+        VBox healthUI = new VBox(30.0, healthBarPlayer1, healthBarPlayer2);
         healthUI.setAlignment(Pos.TOP_LEFT);
         healthUI.setPadding(new Insets(20.0));
 
         Text textLevel = getUIFactoryService().newText("", Color.WHITE, 32.0);
         Text textTime = getUIFactoryService().newText("", Color.WHITE, 32.0);
-        textTime.textProperty().bind(Bindings.createStringBinding(
-                () -> {
-                    int seconds = (int) getdp("levelTime").get();
-                    return Math.min(59, seconds / 60) + ":" + Math.min(59, seconds % 60);
-                },
-                getdp("levelTime")));
-        textLevel.textProperty().bind(Bindings.createStringBinding(
-                () -> "Level " + geti("level"),
+        textTime.textProperty().bind(Bindings.createStringBinding(() -> {
+            int seconds = (int) getdp("levelTime").get();
+            return Math.min(59, seconds / 60) + ":" + Math.min(59, seconds % 60);
+        }, getdp("levelTime")));
+        textLevel.textProperty().bind(Bindings.createStringBinding(() -> "Level " + geti("level"),
                 getip("level")));
         VBox timeUI = new VBox(30.0, textLevel, textTime);
         timeUI.setAlignment(Pos.TOP_RIGHT);
@@ -269,28 +272,27 @@ public class DungeonApp extends GameApplication {
     protected void initGame() {
         getGameScene().setBackgroundColor(Color.BLACK);
         getGameWorld().addEntityFactory(new DungeonFactory());
-        getAudioPlayer().stopMusic(musicMenu);
-        getAudioPlayer().loopMusic(musicGame);
+        getAudioPlayer().stopMusic(MUSIC_MENU);
+        getAudioPlayer().loopMusic(MUSIC_GAME);
         getGameScene().setCursorInvisible();
         setLevel();
     }
 
     @Override
     protected void onUpdate(double tpf) {
-        if (player1.getComponent(PlayerComponent.class).getHealth() == 0.0 ||
-                player2.getComponent(PlayerComponent.class).getHealth() == 0.0) {
+        if (player1.getComponent(HealthDoubleComponent.class).getValue() == 0.0 ||
+                player2.getComponent(HealthDoubleComponent.class).getValue() == 0.0) {
             new GameOverScene(this::onPlayerDied).onGameOver();
         }
         inc("levelTime", tpf);
     }
 
-    public void setLevel() {
+    private void setLevel() {
         setLevelFromMap("tmx/level" + geti("level") + ".tmx");
+
         getGameWorld().getEntitiesByType(EntityType.PLAYER).forEach(player -> {
-            if (player.getProperties().getValue("type").equals(1))
-                player1 = player;
-            else
-                player2 = player;
+            if (player.getProperties().getInt("type") == 1) player1 = player;
+            else player2 = player;
         });
 
         Viewport viewport = getGameScene().getViewport();
@@ -305,13 +307,8 @@ public class DungeonApp extends GameApplication {
     public void onLevelEnded() {
         set("levelTime", 0.0);
         inc("level", 1);
-        if (geti("level") <= 3) // 3 is MAX_LEVEL
+        if (geti("level") <= FINAL_LEVEL)
             setLevel();
-        else
-            new GameEndScene().onGameEnd();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+        else new GameEndScene().onGameEnd();
     }
 }

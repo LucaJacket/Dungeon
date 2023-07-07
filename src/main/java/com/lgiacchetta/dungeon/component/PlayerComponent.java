@@ -8,23 +8,26 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 
-import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.lgiacchetta.dungeon.Utils.*;
+import static com.almasb.fxgl.dsl.FXGL.getGameTimer;
+import static com.almasb.fxgl.dsl.FXGL.play;
+import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
 
 public class PlayerComponent extends Component {
-    private PhysicsComponent physics;
-    private HealthDoubleComponent health;
+    private static final double DAMAGE_COOLDOWN = 1.0;
+    private static final double TELEPORT_COOLDOWN = 4.0;
     private final AnimatedTexture texture;
     private final AnimationChannel idle;
     private final AnimationChannel walk;
     private final double velocity = 100.0;
+    private PhysicsComponent physics;
+    private HealthDoubleComponent health;
     private double lastDamaged;
     private double lastTeleported;
 
     public PlayerComponent(String idleAsset, String walkAsset) {
         lastDamaged = lastTeleported = getGameTimer().getNow();
-        idle = getAnimation(idleAsset, 4, 1.0);
-        walk = getAnimation(walkAsset, 4, 0.5);
+        idle = getAnimationChannel(idleAsset, 4, 1.0);
+        walk = getAnimationChannel(walkAsset, 4, 0.5);
         texture = new AnimatedTexture(idle);
         texture.loop();
     }
@@ -45,7 +48,9 @@ public class PlayerComponent extends Component {
         }
     }
 
-    public void up() { physics.setVelocityY(-velocity); }
+    public void up() {
+        physics.setVelocityY(-velocity);
+    }
 
     public void left() {
         getEntity().setScaleX(-1); // rotate to left
@@ -57,20 +62,18 @@ public class PlayerComponent extends Component {
         physics.setVelocityX(velocity);
     }
 
-    public void down() { physics.setVelocityY(velocity); }
+    public void down() {
+        physics.setVelocityY(velocity);
+    }
 
     public void stop() {
         physics.setVelocityX(0);
         physics.setVelocityY(0);
     }
 
-    public double getHealth() {
-        return health.getValue();
-    }
-
     public void damage(double amount) {
         double now = getGameTimer().getNow();
-        if (now - lastDamaged >= 1.0) { // damage cooldown
+        if (now - lastDamaged >= DAMAGE_COOLDOWN) {
             lastDamaged = now;
             health.damage(amount);
             getGameTimer().runAtInterval(() -> texture.setVisible(!texture.isVisible()),
@@ -88,7 +91,7 @@ public class PlayerComponent extends Component {
 
     public void teleport(Point2D location) {
         double now = getGameTimer().getNow();
-        if (now - lastTeleported >= 4.0) { // teleport cooldown
+        if (now - lastTeleported >= TELEPORT_COOLDOWN) {
             lastTeleported = now;
             physics.overwritePosition(location);
             play("ladder.wav");

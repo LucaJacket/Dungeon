@@ -15,7 +15,6 @@ public class PlayerSpikeHandler extends CollisionHandler {
     @Override
     protected void onCollision(Entity a, Entity b) {
         if (!a.hasComponent(PlayerComponent.class) || !b.hasComponent(SpikeComponent.class)) return;
-        if (b.getComponent(SpikeComponent.class).isDangerous())
-            a.getComponent(PlayerComponent.class).damage(0.5);
+        if (b.getComponent(SpikeComponent.class).isDangerous()) a.getComponent(PlayerComponent.class).damage(0.5);
     }
 }

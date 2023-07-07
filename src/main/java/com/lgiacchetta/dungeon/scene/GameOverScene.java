@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.lgiacchetta.dungeon.Utils.*;
+import static com.lgiacchetta.dungeon.Utils.MUSIC_GAME;
 
 public class GameOverScene extends SubScene {
     private final BooleanProperty isAnimationDone;
@@ -29,7 +29,7 @@ public class GameOverScene extends SubScene {
         Rectangle bg = new Rectangle(800.0, 400.0, Color.BLACK);
         bg.setStroke(Color.RED);
         bg.setStrokeWidth(4.0);
-        bg.setEffect(new DropShadow(64.0, Color.color(0,0,0, 0.9)));
+        bg.setEffect(new DropShadow(64.0, Color.color(0, 0, 0, 0.9)));
 
         Text textGameOver = getUIFactoryService().newText(
                 "GAME OVER", Color.RED, 104.0);
@@ -72,7 +72,7 @@ public class GameOverScene extends SubScene {
             protected void onActionBegin() {
                 if (isAnimationDone.get()) {
                     getSceneService().popSubScene();
-                    getAudioPlayer().loopMusic(musicGame);
+                    getAudioPlayer().loopMusic(MUSIC_GAME);
                     onPlayerDied.run();
                 }
             }
@@ -81,7 +81,7 @@ public class GameOverScene extends SubScene {
 
     public void onGameOver() {
         getSceneService().pushSubScene(this);
-        getAudioPlayer().stopMusic(musicGame);
+        getAudioPlayer().stopMusic(MUSIC_GAME);
         play("game-over.wav");
     }
 }
