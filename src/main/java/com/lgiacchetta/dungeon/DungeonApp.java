@@ -34,15 +34,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.lgiacchetta.dungeon.Utils.MUSIC_GAME;
-import static com.lgiacchetta.dungeon.Utils.MUSIC_MENU;
+import static com.lgiacchetta.dungeon.Utils.*;
 
 public class DungeonApp extends GameApplication {
     private final static int FINAL_LEVEL = 3;
     private Entity player1;
     private Entity player2;
-    private StringProperty texturePlayer1;
-    private StringProperty texturePlayer2;
+    private IntegerProperty texturePlayer1;
+    private IntegerProperty texturePlayer2;
     private IntegerProperty chosenLevel;
 
     public static void main(String[] args) {
@@ -70,8 +69,8 @@ public class DungeonApp extends GameApplication {
         settings.setFontText("alagard.ttf");
         settings.setFontUI("alagard.ttf");
 
-        texturePlayer1 = new SimpleStringProperty();
-        texturePlayer2 = new SimpleStringProperty();
+        texturePlayer1 = new SimpleIntegerProperty(0);
+        texturePlayer2 = new SimpleIntegerProperty(1);
         chosenLevel = new SimpleIntegerProperty(0);
 
         settings.setSceneFactory(new SceneFactory() {
@@ -94,10 +93,10 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("idlePlayer1", texturePlayer1.getValue());
-        vars.put("walkPlayer1", texturePlayer1.getValue().replace("idle", "run"));
-        vars.put("idlePlayer2", texturePlayer2.getValue());
-        vars.put("walkPlayer2", texturePlayer2.getValue().replace("idle", "run"));
+        vars.put("idlePlayer1", HEROES.get(texturePlayer1.get()));
+        vars.put("walkPlayer1", HEROES.get(texturePlayer1.get()).replace("idle", "run"));
+        vars.put("idlePlayer2", HEROES.get(texturePlayer2.get()));
+        vars.put("walkPlayer2", HEROES.get(texturePlayer2.get()).replace("idle", "run"));
         vars.put("level", chosenLevel.get());
         vars.put("levelTime", 0.0);
     }
@@ -238,10 +237,8 @@ public class DungeonApp extends GameApplication {
     protected void initUI() {
         GridPane gameUI = new GridPane();
 
-        HBox healthBarPlayer1 = getHealthBar(texturePlayer1.get() + "0.png",
-                player1.getComponent(HealthDoubleComponent.class).valueProperty());
-        HBox healthBarPlayer2 = getHealthBar(texturePlayer2.get() + "0.png",
-                player2.getComponent(HealthDoubleComponent.class).valueProperty());
+        HBox healthBarPlayer1 = getHealthBar(gets("idlePlayer1") + "0.png", player1.getComponent(HealthDoubleComponent.class).valueProperty());
+        HBox healthBarPlayer2 = getHealthBar(gets("idlePlayer2") + "0.png", player2.getComponent(HealthDoubleComponent.class).valueProperty());
         VBox healthUI = new VBox(30.0, healthBarPlayer1, healthBarPlayer2);
         healthUI.setAlignment(Pos.TOP_LEFT);
         healthUI.setPadding(new Insets(20.0));
@@ -252,8 +249,7 @@ public class DungeonApp extends GameApplication {
             int seconds = (int) getdp("levelTime").get();
             return Math.min(59, seconds / 60) + ":" + Math.min(59, seconds % 60);
         }, getdp("levelTime")));
-        textLevel.textProperty().bind(Bindings.createStringBinding(() -> "Level " + geti("level"),
-                getip("level")));
+        textLevel.textProperty().bind(Bindings.createStringBinding(() -> "Level " + geti("level"), getip("level")));
         VBox timeUI = new VBox(30.0, textLevel, textTime);
         timeUI.setAlignment(Pos.TOP_RIGHT);
         timeUI.setPadding(new Insets(20.0));
@@ -280,8 +276,7 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
-        if (player1.getComponent(HealthDoubleComponent.class).getValue() == 0.0 ||
-                player2.getComponent(HealthDoubleComponent.class).getValue() == 0.0) {
+        if (player1.getComponent(HealthDoubleComponent.class).getValue() == 0.0 || player2.getComponent(HealthDoubleComponent.class).getValue() == 0.0) {
             new GameOverScene(this::onPlayerDied).onGameOver();
         }
         inc("levelTime", tpf);
@@ -295,6 +290,9 @@ public class DungeonApp extends GameApplication {
             else player2 = player;
         });
 
+        getGameScene().clearUINodes();
+        initUI();
+
         Viewport viewport = getGameScene().getViewport();
         viewport.bindToFit(getAppWidth() / 8.0, getAppHeight() / 8.0, player1, player2);
         viewport.setLazy(true);
@@ -307,8 +305,7 @@ public class DungeonApp extends GameApplication {
     public void onLevelEnded() {
         set("levelTime", 0.0);
         inc("level", 1);
-        if (geti("level") <= FINAL_LEVEL)
-            setLevel();
+        if (geti("level") <= FINAL_LEVEL) setLevel();
         else new GameEndScene().onGameEnd();
     }
 }

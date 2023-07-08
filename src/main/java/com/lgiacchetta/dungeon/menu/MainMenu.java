@@ -4,7 +4,6 @@ import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
 import com.lgiacchetta.dungeon.SkinSelector;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
@@ -13,23 +12,19 @@ import javafx.scene.text.Text;
 
 import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
 import static com.almasb.fxgl.dsl.FXGL.image;
-import static com.lgiacchetta.dungeon.Utils.HEROES;
 import static com.lgiacchetta.dungeon.Utils.createActionButton;
 
 public class MainMenu extends FXGLMenu {
     private final static int LEVELS = 4;
-    private final StringProperty texturePlayer1;
-    private final StringProperty texturePlayer2;
+    private final IntegerProperty texturePlayer1;
+    private final IntegerProperty texturePlayer2;
     private final IntegerProperty chosenLevel;
 
-    public MainMenu(StringProperty texturePlayer1, StringProperty texturePlayer2, IntegerProperty chosenLevel) {
+    public MainMenu(IntegerProperty texturePlayer1, IntegerProperty texturePlayer2, IntegerProperty chosenLevel) {
         super(MenuType.MAIN_MENU);
         this.texturePlayer1 = texturePlayer1;
         this.texturePlayer2 = texturePlayer2;
         this.chosenLevel = chosenLevel;
-
-        if (texturePlayer1.isEmpty().get()) texturePlayer1.set(HEROES.get(0)); // default texture for player1
-        if (texturePlayer2.isEmpty().get()) texturePlayer2.set(HEROES.get(1)); // default texture for player2
 
         getContentRoot().setBackground(new Background(new BackgroundImage(  // Image by upklyak on Freepik
                 image("loading.jpg"),

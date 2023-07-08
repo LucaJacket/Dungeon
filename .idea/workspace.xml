@@ -7,7 +7,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69721163-1eb0-404a-a35f-2e029258d932" name="Changes" comment="Code Optimization" />
+    <list default="true" id="69721163-1eb0-404a-a35f-2e029258d932" name="Changes" comment="Code Optimization">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.08.36.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.09.34.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.16.05.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.18.38.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.19.11.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.24.24.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-21.18.00.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-21.27.01.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-21.38.22.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/SkinSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/SkinSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/menu/MainMenu.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
