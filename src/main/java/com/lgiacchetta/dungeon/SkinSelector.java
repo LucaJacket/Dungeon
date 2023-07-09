@@ -12,7 +12,19 @@ import static com.almasb.fxgl.dsl.FXGL.getSceneService;
 import static com.lgiacchetta.dungeon.Utils.HEROES;
 import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
 
+/**
+ * HBox to dynamically choose skin.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see HBox
+ */
 public class SkinSelector extends HBox {
+    /**
+     * Initializes SkinSelector.
+     *
+     * @param skinIndex initial index of chosen skin
+     */
     public SkinSelector(IntegerProperty skinIndex) {
         super(40.0);
 

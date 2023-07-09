@@ -11,8 +11,18 @@ import com.lgiacchetta.dungeon.component.PlayerComponent;
 import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
 import static com.almasb.fxgl.dsl.FXGL.play;
 
+/**
+ * Collision handler between player and plate.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see CollisionHandler
+ */
 public class PlayerPlateHandler extends CollisionHandler {
 
+    /**
+     * Initializes PlayerPlateHandler.
+     */
     public PlayerPlateHandler() {
         super(EntityType.PLAYER, EntityType.PLATE);
     }

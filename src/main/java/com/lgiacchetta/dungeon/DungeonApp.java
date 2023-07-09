@@ -36,6 +36,13 @@ import java.util.Map;
 import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.lgiacchetta.dungeon.Utils.*;
 
+/**
+ * Dungeon Game Application.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @version 2023.07.09
+ */
 public class DungeonApp extends GameApplication {
     private final static int FINAL_LEVEL = 3;
     private Entity player1;
@@ -298,11 +305,11 @@ public class DungeonApp extends GameApplication {
         viewport.setLazy(true);
     }
 
-    public void onPlayerDied() {
+    private void onPlayerDied() {
         setLevel();
     }
 
-    public void onLevelEnded() {
+    private void onLevelEnded() {
         set("levelTime", 0.0);
         inc("level", 1);
         if (geti("level") <= FINAL_LEVEL) setLevel();

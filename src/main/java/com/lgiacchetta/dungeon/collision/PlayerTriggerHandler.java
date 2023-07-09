@@ -16,8 +16,18 @@ import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
+/**
+ * Collision handler between player and trigger.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see CollisionHandler
+ */
 public class PlayerTriggerHandler extends CollisionHandler {
 
+    /**
+     * Initializes PlayerTriggerHandler.
+     */
     public PlayerTriggerHandler() {
         super(EntityType.PLAYER, EntityType.TRIGGER);
     }

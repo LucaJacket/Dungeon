@@ -7,8 +7,18 @@ import com.lgiacchetta.dungeon.component.PlayerComponent;
 
 import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
 
+/**
+ * Collision handler between player and ladder.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see CollisionHandler
+ */
 public class PlayerLadderHandler extends CollisionHandler {
 
+    /**
+     * Initializes PlayerLadderHandler.
+     */
     public PlayerLadderHandler() {
         super(EntityType.PLAYER, EntityType.LADDER);
     }
