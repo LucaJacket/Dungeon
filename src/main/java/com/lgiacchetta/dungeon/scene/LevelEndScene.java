@@ -2,6 +2,7 @@ package com.lgiacchetta.dungeon.scene;
 
 import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.animation.Interpolators;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.HealthDoubleComponent;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.scene.SubScene;
@@ -27,9 +28,21 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
 import static com.lgiacchetta.dungeon.Utils.MUSIC_GAME;
 
+/**
+ * Scene that will be displayed when the players have completed the level, except for the final level.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see SubScene
+ */
 public class LevelEndScene extends SubScene {
     private final BooleanProperty isAnimationDone;
 
+    /**
+     * Initializes new LevelEndScene.
+     *
+     * @param onLevelEnded called on scene pop
+     */
     public LevelEndScene(Runnable onLevelEnded) {
         Rectangle shadow = new Rectangle(getAppWidth(), getAppHeight(),
                 Color.color(0, 0, 0, 0.6));
@@ -116,6 +129,13 @@ public class LevelEndScene extends SubScene {
 
     }
 
+    /**
+     * Pushes LevelEndScene, stops game music and plays level completed sound.
+     *
+     * @see FXGL#getGameScene()
+     * @see FXGL#getAudioPlayer()
+     * @see FXGL#play(String)
+     */
     public void onLevelEnd() {
         getSceneService().pushSubScene(this);
         getAudioPlayer().stopMusic(MUSIC_GAME);

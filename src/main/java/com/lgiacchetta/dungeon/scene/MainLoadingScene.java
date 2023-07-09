@@ -12,7 +12,17 @@ import static com.almasb.fxgl.dsl.FXGL.image;
 import static com.lgiacchetta.dungeon.Utils.MAIN_LOADING_CHARACTERS;
 import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
 
+/**
+ * Scene that will be displayed when the game is loading.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see LoadingScene
+ */
 public class MainLoadingScene extends LoadingScene {
+    /**
+     * Initializes new MainLoadingScene.
+     */
     public MainLoadingScene() {
         Text textLoading = getUIFactoryService().newText(
                 "LOADING", Color.WHITE, 104.0);

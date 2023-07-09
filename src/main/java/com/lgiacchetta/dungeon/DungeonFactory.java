@@ -1,5 +1,6 @@
 package com.lgiacchetta.dungeon;
 
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.HealthDoubleComponent;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
@@ -18,8 +19,23 @@ import javafx.scene.image.Image;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
+/**
+ * Entity factory for GameWorld.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see EntityFactory
+ */
 public class DungeonFactory implements EntityFactory {
-
+    /**
+     * Spawns wall.
+     *
+     * @param data spawn data for entity creation
+     * @return Entity
+     * @see SpawnData
+     * @see FXGL#entityBuilder(SpawnData)
+     * @see Entity
+     */
     @Spawns("wall")
     public Entity newWall(SpawnData data) {
         return entityBuilder(data)
@@ -29,6 +45,15 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 
+    /**
+     * Spawns trigger.
+     *
+     * @param data spawn data for entity creation
+     * @return Entity
+     * @see SpawnData
+     * @see FXGL#entityBuilder(SpawnData)
+     * @see Entity
+     */
     @Spawns("trigger")
     public Entity newTrigger(SpawnData data) {
         return entityBuilder(data)
@@ -38,6 +63,15 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 
+    /**
+     * Spawns potion.
+     *
+     * @param data spawn data for entity creation
+     * @return Entity
+     * @see SpawnData
+     * @see FXGL#entityBuilder(SpawnData)
+     * @see Entity
+     */
     @Spawns("potion")
     public Entity newPotion(SpawnData data) {
         return entityBuilder(data)
@@ -48,6 +82,15 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 
+    /**
+     * Spawns door.
+     *
+     * @param data spawn data for entity creation
+     * @return Entity
+     * @see SpawnData
+     * @see FXGL#entityBuilder(SpawnData)
+     * @see Entity
+     */
     @Spawns("door")
     public Entity newDoor(SpawnData data) {
         Image open = image("door/doors_leaf_open.png");
@@ -65,6 +108,15 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 
+    /**
+     * Spawns exit door.
+     *
+     * @param data spawn data for entity creation
+     * @return Entity
+     * @see SpawnData
+     * @see FXGL#entityBuilder(SpawnData)
+     * @see Entity
+     */
     @Spawns("exit")
     public Entity newExit(SpawnData data) {
         Entity exit = newDoor(data);
@@ -73,6 +125,15 @@ public class DungeonFactory implements EntityFactory {
         return exit;
     }
 
+    /**
+     * Spawns plate.
+     *
+     * @param data spawn data for entity creation
+     * @return Entity
+     * @see SpawnData
+     * @see FXGL#entityBuilder(SpawnData)
+     * @see Entity
+     */
     @Spawns("plate")
     public Entity newPlate(SpawnData data) {
         Image up = image("plate/button_" + data.<String>get("color") + "_up.png");
@@ -91,6 +152,15 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 
+    /**
+     * Spawns ladder.
+     *
+     * @param data spawn data for entity creation
+     * @return Entity
+     * @see SpawnData
+     * @see FXGL#entityBuilder(SpawnData)
+     * @see Entity
+     */
     @Spawns("ladder")
     public Entity newLadder(SpawnData data) {
         return entityBuilder(data)
@@ -101,6 +171,15 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 
+    /**
+     * Spawns spike.
+     *
+     * @param data spawn data for entity creation
+     * @return Entity
+     * @see SpawnData
+     * @see FXGL#entityBuilder(SpawnData)
+     * @see Entity
+     */
     @Spawns("spike")
     public Entity newSpike(SpawnData data) {
         return entityBuilder(data)
@@ -111,6 +190,15 @@ public class DungeonFactory implements EntityFactory {
                 .build();
     }
 
+    /**
+     * Spawns player.
+     *
+     * @param data spawn data for entity creation
+     * @return Entity
+     * @see SpawnData
+     * @see FXGL#entityBuilder(SpawnData)
+     * @see Entity
+     */
     @Spawns("player")
     public Entity newPlayer(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();

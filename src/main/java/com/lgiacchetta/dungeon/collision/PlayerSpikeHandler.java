@@ -6,8 +6,18 @@ import com.lgiacchetta.dungeon.EntityType;
 import com.lgiacchetta.dungeon.component.PlayerComponent;
 import com.lgiacchetta.dungeon.component.SpikeComponent;
 
+/**
+ * Collision handler between player and spike.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see CollisionHandler
+ */
 public class PlayerSpikeHandler extends CollisionHandler {
 
+    /**
+     * Initializes PlayerSpikeHandler.
+     */
     public PlayerSpikeHandler() {
         super(EntityType.PLAYER, EntityType.SPIKE);
     }

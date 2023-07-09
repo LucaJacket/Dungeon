@@ -16,8 +16,17 @@ import javafx.scene.text.Text;
 import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.lgiacchetta.dungeon.Utils.*;
 
+/**
+ * Menu that will be displayed then firing game pause.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see FXGLMenu
+ */
 public class GameMenu extends FXGLMenu {
-
+    /**
+     * Initializes GameMenu.
+     */
     public GameMenu() {
         super(MenuType.GAME_MENU);
 

@@ -14,12 +14,26 @@ import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
 import static com.almasb.fxgl.dsl.FXGL.image;
 import static com.lgiacchetta.dungeon.Utils.createActionButton;
 
+/**
+ * Menu that will be displayed when starting the application.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see FXGLMenu
+ */
 public class MainMenu extends FXGLMenu {
     private final static int LEVELS = 4;
     private final IntegerProperty texturePlayer1;
     private final IntegerProperty texturePlayer2;
     private final IntegerProperty chosenLevel;
 
+    /**
+     * Initializes MainMenu
+     *
+     * @param texturePlayer1 index of texture of player 1
+     * @param texturePlayer2 index of texture of player 2
+     * @param chosenLevel    chosen level
+     */
     public MainMenu(IntegerProperty texturePlayer1, IntegerProperty texturePlayer2, IntegerProperty chosenLevel) {
         super(MenuType.MAIN_MENU);
         this.texturePlayer1 = texturePlayer1;
@@ -27,11 +41,7 @@ public class MainMenu extends FXGLMenu {
         this.chosenLevel = chosenLevel;
 
         getContentRoot().setBackground(new Background(new BackgroundImage(  // Image by upklyak on Freepik
-                image("loading.jpg"),
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                BackgroundSize.DEFAULT)));
+                image("loading.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         goToMainMenu();
     }
 
@@ -40,12 +50,9 @@ public class MainMenu extends FXGLMenu {
         textTitle.setStroke(Color.BLACK);
         textTitle.setStrokeWidth(2.0);
 
-        Pane buttonStartGame = createActionButton("Start Game", 400.0, 100.0, 48.0,
-                this::fireNewGame);
-        Pane buttonStartTutorial = createActionButton("Select Level", 400.0, 100.0, 48.0,
-                this::goToSelectLevel);
-        Pane buttonSelectHeroes = createActionButton("Select Heroes", 400.0, 100.0, 48.0,
-                this::goToSelectHeroes);
+        Pane buttonStartGame = createActionButton("Start Game", 400.0, 100.0, 48.0, this::fireNewGame);
+        Pane buttonStartTutorial = createActionButton("Select Level", 400.0, 100.0, 48.0, this::goToSelectLevel);
+        Pane buttonSelectHeroes = createActionButton("Select Heroes", 400.0, 100.0, 48.0, this::goToSelectHeroes);
 
         VBox vBox = new VBox(40.0, textTitle, buttonStartGame, buttonStartTutorial, buttonSelectHeroes);
         vBox.setPrefSize(getAppWidth(), getAppHeight());
@@ -80,8 +87,7 @@ public class MainMenu extends FXGLMenu {
             vBox.getChildren().add(hBox);
         }
 
-        HBox backHBox = new HBox(20.0, createActionButton("Back", 400.0, 100.0, 48.0,
-                this::goToMainMenu));
+        HBox backHBox = new HBox(20.0, createActionButton("Back", 400.0, 100.0, 48.0, this::goToMainMenu));
         backHBox.setAlignment(Pos.CENTER);
         vBox.getChildren().add(backHBox);
 

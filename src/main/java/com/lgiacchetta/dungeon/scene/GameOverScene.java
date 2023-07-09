@@ -1,6 +1,7 @@
 package com.lgiacchetta.dungeon.scene;
 
 import com.almasb.fxgl.animation.Animation;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.scene.SubScene;
 import javafx.beans.property.BooleanProperty;
@@ -19,9 +20,21 @@ import javafx.util.Duration;
 import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.lgiacchetta.dungeon.Utils.MUSIC_GAME;
 
+/**
+ * Scene that will be displayed when the players have died.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see SubScene
+ */
 public class GameOverScene extends SubScene {
     private final BooleanProperty isAnimationDone;
 
+    /**
+     * Initializes new GameOverScene.
+     *
+     * @param onPlayerDied called on scene pop
+     */
     public GameOverScene(Runnable onPlayerDied) {
         Rectangle shadow = new Rectangle(getAppWidth(), getAppHeight(),
                 Color.color(0, 0, 0, 0.6));
@@ -79,6 +92,13 @@ public class GameOverScene extends SubScene {
         }, KeyCode.ENTER);
     }
 
+    /**
+     * Pushes GameOverScene, stops game music and plays game over sound.
+     *
+     * @see FXGL#getGameScene()
+     * @see FXGL#getAudioPlayer()
+     * @see FXGL#play(String)
+     */
     public void onGameOver() {
         getSceneService().pushSubScene(this);
         getAudioPlayer().stopMusic(MUSIC_GAME);

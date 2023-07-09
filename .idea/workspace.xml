@@ -7,20 +7,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69721163-1eb0-404a-a35f-2e029258d932" name="Changes" comment="Code Optimization">
+    <list default="true" id="69721163-1eb0-404a-a35f-2e029258d932" name="Changes" comment="Skin Selector change&#10;UI bug fix">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.08.36.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.09.34.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.16.05.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.18.38.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.19.11.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-20.24.24.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-21.18.00.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-21.27.01.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/FXGL-07-lug-2023-21.38.22.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/EntityType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/EntityType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/SkinSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/SkinSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerExitHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerExitHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerLadderHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerLadderHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerPlateHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerPlateHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerPlayerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerPlayerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerPotionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerPotionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerSpikeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerSpikeHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerTriggerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerTriggerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/component/PlayerComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/component/PlayerComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/component/SpikeComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/component/SpikeComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/menu/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/menu/GameMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/menu/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/GameEndScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/GameEndScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/GameOverScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/GameOverScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/LevelEndScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/LevelEndScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/MainLoadingScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/MainLoadingScene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688759030353</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Skin Selector change&#10;UI bug fix">
+      <created>1688826810086</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1688826810086</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,6 +181,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="GENERAL FIX&#10;&#10;- fixed bugs&#10;- added select level menu&#10;- fixed scenes + animations&#10;- reorganized code" />
     <MESSAGE value="Code Optimization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code Optimization" />
+    <MESSAGE value="Skin Selector change&#10;UI bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Skin Selector change&#10;UI bug fix" />
   </component>
 </project>

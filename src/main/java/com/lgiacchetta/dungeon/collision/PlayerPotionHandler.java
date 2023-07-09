@@ -5,8 +5,18 @@ import com.almasb.fxgl.physics.CollisionHandler;
 import com.lgiacchetta.dungeon.EntityType;
 import com.lgiacchetta.dungeon.component.PlayerComponent;
 
+/**
+ * Collision handler between player and potion.
+ *
+ * @author Luca Giacchetta
+ * @author Sofia Vita
+ * @see CollisionHandler
+ */
 public class PlayerPotionHandler extends CollisionHandler {
 
+    /**
+     * Initializes PlayerPotionHandler.
+     */
     public PlayerPotionHandler() {
         super(EntityType.PLAYER, EntityType.POTION);
     }
