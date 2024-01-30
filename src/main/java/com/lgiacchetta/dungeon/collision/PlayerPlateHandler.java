@@ -29,13 +29,13 @@ public class PlayerPlateHandler extends CollisionHandler {
 
     @Override
     protected void onCollisionBegin(Entity a, Entity b) {
-        if (!a.hasComponent(PlayerComponent.class)) return;
+        assert a.hasComponent(PlayerComponent.class);
         press(b);
     }
 
     @Override
     protected void onCollisionEnd(Entity a, Entity b) {
-        if (!a.hasComponent(PlayerComponent.class)) return;
+        assert a.hasComponent(PlayerComponent.class);
         unpress(b);
     }
 

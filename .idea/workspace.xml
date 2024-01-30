@@ -7,13 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69721163-1eb0-404a-a35f-2e029258d932" name="Changes" comment="Skin Selector change&#10;UI bug fix">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="69721163-1eb0-404a-a35f-2e029258d932" name="Changes" comment="Added JavaDocs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/DungeonFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/EntityType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/EntityType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/SkinSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/SkinSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/SkinSelector.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerExitHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerExitHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerLadderHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/collision/PlayerLadderHandler.java" afterDir="false" />
@@ -30,6 +28,10 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/GameOverScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/GameOverScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/LevelEndScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/LevelEndScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/MainLoadingScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lgiacchetta/dungeon/scene/MainLoadingScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level0.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level0.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level2.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level2.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level3.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/levels/tmx/level3.tmx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,12 +51,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Dungeon" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -84,7 +81,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Luca" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -105,7 +102,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lucag/IdeaProjects/Dungeon/src/main/resources/assets/textures/chest&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lucag/IdeaProjects/Dungeon&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
 }</component>
@@ -164,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688826810086</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added JavaDocs">
+      <created>1688930598175</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688930598175</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,7 +176,24 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="masterRefactoring1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -182,6 +203,7 @@
     <MESSAGE value="GENERAL FIX&#10;&#10;- fixed bugs&#10;- added select level menu&#10;- fixed scenes + animations&#10;- reorganized code" />
     <MESSAGE value="Code Optimization" />
     <MESSAGE value="Skin Selector change&#10;UI bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Skin Selector change&#10;UI bug fix" />
+    <MESSAGE value="Added JavaDocs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added JavaDocs" />
   </component>
 </project>

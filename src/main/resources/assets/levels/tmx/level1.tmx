@@ -557,13 +557,13 @@
     <property name="connected" type="int" value="100"/>
    </properties>
   </object>
-  <object id="741" name="player1" type="player" x="38" y="917.333">
+  <object id="741" name="playerOne" type="player" x="38" y="917.333">
    <properties>
     <property name="type" type="int" value="1"/>
    </properties>
    <point/>
   </object>
-  <object id="742" name="player2" type="player" x="928" y="912">
+  <object id="742" name="playerTwo" type="player" x="928" y="912">
    <properties>
     <property name="type" type="int" value="2"/>
    </properties>

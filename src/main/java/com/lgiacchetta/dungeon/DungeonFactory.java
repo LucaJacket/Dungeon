@@ -209,10 +209,8 @@ public class DungeonFactory implements EntityFactory {
                 .bbox(new HitBox(new Point2D(2, 12), BoundingShape.box(12, 16)))
                 .with(new CollidableComponent(true))
                 .with(physics)
-                .with(new HealthDoubleComponent(3.0))
-                .with(new PlayerComponent(
-                        gets("idlePlayer" + data.<Integer>get("type")),
-                        gets("walkPlayer" + data.<Integer>get("type"))))
+                .with(new HealthDoubleComponent(PlayerComponent.INIT_HEALTH))
+                .with(new PlayerComponent(gets("texturePlayer" + data.get("type"))))
                 .build();
     }
 }

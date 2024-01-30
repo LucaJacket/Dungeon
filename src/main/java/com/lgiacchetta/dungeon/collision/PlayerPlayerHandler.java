@@ -23,7 +23,8 @@ public class PlayerPlayerHandler extends CollisionHandler {
 
     @Override
     protected void onCollisionEnd(Entity a, Entity b) {
-        if (!a.hasComponent(PlayerComponent.class) || !b.hasComponent(PlayerComponent.class)) return;
+        assert a.hasComponent(PlayerComponent.class);
+        assert b.hasComponent(PlayerComponent.class);
         a.getComponent(PlayerComponent.class).stop();
         b.getComponent(PlayerComponent.class).stop();
     }

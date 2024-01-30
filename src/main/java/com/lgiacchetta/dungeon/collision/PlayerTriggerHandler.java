@@ -34,7 +34,7 @@ public class PlayerTriggerHandler extends CollisionHandler {
 
     @Override
     protected void onCollisionBegin(Entity a, Entity b) {
-        if (!a.hasComponent(PlayerComponent.class)) return;
+        assert a.hasComponent(PlayerComponent.class);
         Text txt = getUIFactoryService().newText(
                 b.getProperties().getString("message"), Color.WHITE, 32.0);
         txt.setWrappingWidth(280.0);

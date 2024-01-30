@@ -7,7 +7,6 @@ import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
-import com.almasb.fxgl.dsl.components.HealthDoubleComponent;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.texture.Texture;
@@ -44,12 +43,12 @@ import static com.lgiacchetta.dungeon.Utils.*;
  * @version 2023.07.09
  */
 public class DungeonApp extends GameApplication {
-    private final static int FINAL_LEVEL = 3;
+    private final IntegerProperty texturePlayer1 = new SimpleIntegerProperty(0);
+    private final IntegerProperty texturePlayer2 = new SimpleIntegerProperty(1);
+    private final IntegerProperty chosenLevel = new SimpleIntegerProperty(0);
+
     private Entity player1;
     private Entity player2;
-    private IntegerProperty texturePlayer1;
-    private IntegerProperty texturePlayer2;
-    private IntegerProperty chosenLevel;
 
     public static void main(String[] args) {
         launch(args);
@@ -57,8 +56,8 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void onPreInit() {
-        getSettings().setGlobalMusicVolume(0.5);
-        getSettings().setGlobalSoundVolume(0.5);
+        getSettings().setGlobalMusicVolume(0.50);
+        getSettings().setGlobalSoundVolume(0.50);
         getAudioPlayer().loopMusic(MUSIC_MENU);
     }
 
@@ -75,10 +74,6 @@ public class DungeonApp extends GameApplication {
         settings.setFontMono("alagard.ttf");
         settings.setFontText("alagard.ttf");
         settings.setFontUI("alagard.ttf");
-
-        texturePlayer1 = new SimpleIntegerProperty(0);
-        texturePlayer2 = new SimpleIntegerProperty(1);
-        chosenLevel = new SimpleIntegerProperty(0);
 
         settings.setSceneFactory(new SceneFactory() {
             @Override
@@ -100,12 +95,14 @@ public class DungeonApp extends GameApplication {
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("idlePlayer1", HEROES.get(texturePlayer1.get()));
-        vars.put("walkPlayer1", HEROES.get(texturePlayer1.get()).replace("idle", "run"));
-        vars.put("idlePlayer2", HEROES.get(texturePlayer2.get()));
-        vars.put("walkPlayer2", HEROES.get(texturePlayer2.get()).replace("idle", "run"));
+        vars.put("texturePlayer1", SKINS.get(texturePlayer1.get()));
+        vars.put("texturePlayer2", SKINS.get(texturePlayer2.get()));
         vars.put("level", chosenLevel.get());
         vars.put("levelTime", 0.0);
+        vars.put("deaths", 0);
+        vars.put("points", 3);
+        vars.put("healthPlayer1", 0.0);
+        vars.put("healthPlayer2", 0.0);
     }
 
     @Override
@@ -207,68 +204,90 @@ public class DungeonApp extends GameApplication {
         getPhysicsWorld().addCollisionHandler(new PlayerSpikeHandler());
         getPhysicsWorld().addCollisionHandler(new PlayerPlateHandler());
         getPhysicsWorld().addCollisionHandler(new PlayerLadderHandler());
-        getPhysicsWorld().addCollisionHandler(new PlayerExitHandler(this::onLevelEnded));
+        getPhysicsWorld().addCollisionHandler(new PlayerExitHandler());
         getPhysicsWorld().addCollisionHandler(new PlayerPotionHandler());
         getPhysicsWorld().addCollisionHandler(new PlayerTriggerHandler());
     }
 
-    private HBox getHealthBar(String texturePlayer, DoubleProperty health) {
-        HBox hBox = new HBox(20.0);
-        hBox.setAlignment(Pos.BASELINE_LEFT);
-
-        Texture texture = getAssetLoader().loadTexture(texturePlayer);
+    private Texture getPlayerIcon(int type) {
+        Texture texture = getAssetLoader().loadTexture(gets("texturePlayer" + type) + "_idle_anim_f0.png");
         texture.setScaleX(2.0);
         texture.setScaleY(2.0);
-        hBox.getChildren().add(texture);
+        return texture;
+    }
 
-        for (int i = 1; i <= 3; i++) {
-            BooleanProperty isFull = new SimpleBooleanProperty();
-            isFull.bind(health.greaterThanOrEqualTo(i));
-            BooleanProperty isEmpty = new SimpleBooleanProperty();
-            isEmpty.bind(health.lessThanOrEqualTo(i - 1));
+    private Texture getHearthIcon(int type, int count) {
+        Texture texture = getAssetLoader().loadTexture("heart/ui_heart_full.png");
+        texture.setScaleX(2.0);
+        texture.setScaleY(2.0);
+        DoubleProperty healthProperty = getdp("healthPlayer" + type);
+        texture.imageProperty().bind(Bindings.createObjectBinding(() -> {
+            double health = healthProperty.get();
+            if (health >= count) return image("heart/ui_heart_full.png");
+            else if (health > count - 1) return image("heart/ui_heart_half.png");
+            else return image("heart/ui_heart_empty.png");
+        }, healthProperty));
+        return texture;
+    }
 
-            Texture heart = getAssetLoader().loadTexture("heart/ui_heart_full.png");
-            heart.setScaleX(2.0);
-            heart.setScaleY(2.0);
-            heart.imageProperty().bind(Bindings.createObjectBinding(() -> {
-                if (isFull.get()) return image("heart/ui_heart_full.png");
-                else if (isEmpty.get()) return image("heart/ui_heart_empty.png");
-                else return image("heart/ui_heart_half.png");
-            }, isFull, isEmpty));
-            hBox.getChildren().add(heart);
-        }
+    private HBox getHealthBar(int type) {
+        HBox hBox = new HBox(20.0);
+        hBox.setAlignment(Pos.BASELINE_LEFT);
+        hBox.getChildren().add(getPlayerIcon(type));
+        for (int i = 1; i <= 3; i++)
+            hBox.getChildren().add(getHearthIcon(type, i));
         return hBox;
+    }
+
+    private VBox getHealthUI() {
+        VBox healthUI = new VBox(32.0, getHealthBar(1), getHealthBar(2));
+        healthUI.setPadding(new Insets(24.0));
+        healthUI.setAlignment(Pos.TOP_LEFT);
+        return healthUI;
+    }
+
+    private Text getTextLevel() {
+        Text textLevel = getUIFactoryService().newText("", Color.WHITE, 32.0);
+        textLevel.textProperty().bind(Bindings.createStringBinding(() -> "Level " + geti("level"), getip("level")));
+        return textLevel;
+    }
+
+    private Text getTextTime() {
+        Text textTime = getUIFactoryService().newText("", Color.WHITE, 32.0);
+        textTime.textProperty().bind(Bindings.createStringBinding(() -> {
+            int seconds = (int) getd("levelTime");
+            return Math.min(59, seconds / 60) + ":" + Math.min(59, seconds % 60);
+        }, getdp("levelTime")));
+        return textTime;
+    }
+
+    private VBox getLevelTimeUI() {
+        VBox levelTimeUI = new VBox(32.0, getTextLevel(), getTextTime());
+        levelTimeUI.setPadding(new Insets(24.0));
+        levelTimeUI.setAlignment(Pos.TOP_RIGHT);
+        return levelTimeUI;
     }
 
     @Override
     protected void initUI() {
         GridPane gameUI = new GridPane();
-
-        HBox healthBarPlayer1 = getHealthBar(gets("idlePlayer1") + "0.png", player1.getComponent(HealthDoubleComponent.class).valueProperty());
-        HBox healthBarPlayer2 = getHealthBar(gets("idlePlayer2") + "0.png", player2.getComponent(HealthDoubleComponent.class).valueProperty());
-        VBox healthUI = new VBox(30.0, healthBarPlayer1, healthBarPlayer2);
-        healthUI.setAlignment(Pos.TOP_LEFT);
-        healthUI.setPadding(new Insets(20.0));
-
-        Text textLevel = getUIFactoryService().newText("", Color.WHITE, 32.0);
-        Text textTime = getUIFactoryService().newText("", Color.WHITE, 32.0);
-        textTime.textProperty().bind(Bindings.createStringBinding(() -> {
-            int seconds = (int) getdp("levelTime").get();
-            return Math.min(59, seconds / 60) + ":" + Math.min(59, seconds % 60);
-        }, getdp("levelTime")));
-        textLevel.textProperty().bind(Bindings.createStringBinding(() -> "Level " + geti("level"), getip("level")));
-        VBox timeUI = new VBox(30.0, textLevel, textTime);
-        timeUI.setAlignment(Pos.TOP_RIGHT);
-        timeUI.setPadding(new Insets(20.0));
-
-        gameUI.add(healthUI, 0, 0);
-        gameUI.add(timeUI, 1, 0);
-        for (int i = 0; i < gameUI.getColumnCount(); i++) {
-            ColumnConstraints columnWidth = new ColumnConstraints();
-            columnWidth.setPrefWidth((double) getAppWidth() / gameUI.getColumnCount());
-            gameUI.getColumnConstraints().add(columnWidth);
-        }
+        ColumnConstraints halfWidth = new ColumnConstraints(getAppWidth() / 2.0);
+        gameUI.getColumnConstraints().addAll(halfWidth, halfWidth);
+        gameUI.addRow(0, getHealthUI(), getLevelTimeUI());
         getGameScene().addUINode(gameUI);
+    }
+
+    private void calcPoints() {
+        DoubleProperty levelTime = getdp("levelTime");
+        DoubleProperty healthPlayer1 = getdp("healthPlayer1");
+        DoubleProperty healthPlayer2 = getdp("healthPlayer2");
+        getWorldProperties().intProperty("points").bind(Bindings.createIntegerBinding(() -> {
+            int points = 0;
+            if (levelTime.get() < 180.0) points++;
+            if (healthPlayer1.get() == 3.0) points++;
+            if (healthPlayer2.get() == 3.0) points++;
+            return points;
+        }, levelTime, healthPlayer1, healthPlayer2));
     }
 
     @Override
@@ -278,41 +297,36 @@ public class DungeonApp extends GameApplication {
         getAudioPlayer().stopMusic(MUSIC_MENU);
         getAudioPlayer().loopMusic(MUSIC_GAME);
         getGameScene().setCursorInvisible();
-        setLevel();
+        getWorldProperties().addListener("level", (oldValue, newValue) -> initLevel());
+        getWorldProperties().addListener("deaths", (oldValue, newValue) -> initLevel());
+        calcPoints();
+        initLevel();
     }
 
     @Override
     protected void onUpdate(double tpf) {
-        if (player1.getComponent(HealthDoubleComponent.class).getValue() == 0.0 || player2.getComponent(HealthDoubleComponent.class).getValue() == 0.0) {
-            new GameOverScene(this::onPlayerDied).onGameOver();
+        if (player1.getComponent(PlayerComponent.class).getHealth() <= 0.0 || player2.getComponent(PlayerComponent.class).getHealth() <= 0.0) {
+            new GameOverScene().push();
+            return;
         }
         inc("levelTime", tpf);
     }
 
-    private void setLevel() {
-        setLevelFromMap("tmx/level" + geti("level") + ".tmx");
+    private void initLevel() {
+        int level = geti("level");
+        if (level > 0) {
+            new GameEndScene().push();
+            return;
+        }
+        setLevelFromMap("tmx/level" + level + ".tmx");
 
-        getGameWorld().getEntitiesByType(EntityType.PLAYER).forEach(player -> {
-            if (player.getProperties().getInt("type") == 1) player1 = player;
-            else player2 = player;
-        });
-
-        getGameScene().clearUINodes();
-        initUI();
+        player1 = getGameWorld().getSingleton(e -> e.isType(EntityType.PLAYER) && e.getInt("type") == 1);
+        getdp("healthPlayer1").bind(player1.getComponent(PlayerComponent.class).getHealthProperty());
+        player2 = getGameWorld().getSingleton(e -> e.isType(EntityType.PLAYER) && e.getInt("type") == 2);
+        getdp("healthPlayer2").bind(player2.getComponent(PlayerComponent.class).getHealthProperty());
 
         Viewport viewport = getGameScene().getViewport();
         viewport.bindToFit(getAppWidth() / 8.0, getAppHeight() / 8.0, player1, player2);
         viewport.setLazy(true);
-    }
-
-    private void onPlayerDied() {
-        setLevel();
-    }
-
-    private void onLevelEnded() {
-        set("levelTime", 0.0);
-        inc("level", 1);
-        if (geti("level") <= FINAL_LEVEL) setLevel();
-        else new GameEndScene().onGameEnd();
     }
 }

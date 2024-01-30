@@ -3,11 +3,11 @@ package com.lgiacchetta.dungeon;
 import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.beans.binding.Bindings;
-import javafx.scene.control.Slider;
+import javafx.beans.property.DoubleProperty;
+import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -26,42 +26,51 @@ import static com.almasb.fxgl.dsl.FXGL.*;
  */
 public class Utils {
     /** List of available skins for players. */
-    public static final List<String> HEROES = List.of(
-            "hero/knight_m_idle_anim_f",
-            "hero/knight_f_idle_anim_f",
-            "hero/dwarf_m_idle_anim_f",
-            "hero/dwarf_f_idle_anim_f",
-            "hero/elf_m_idle_anim_f",
-            "hero/elf_f_idle_anim_f",
-            "hero/lizard_m_idle_anim_f",
-            "hero/lizard_f_idle_anim_f",
-            "hero/wizzard_m_idle_anim_f",
-            "hero/wizzard_f_idle_anim_f");
-    /** List of textures used in the main loading scene. */
-    public static final List<String> MAIN_LOADING_CHARACTERS = List.of(
-            "orc/boss/ogre_run_anim_f",
-            "demon/boss/big_demon_run_anim_f",
-            "undead/boss/big_zombie_run_anim_f",
-            "hero/knight_m_run_anim_f");
+    public static final List<String> SKINS = List.of(
+            "hero/knight_m",
+            "hero/knight_f",
+            "hero/dwarf_m",
+            "hero/dwarf_f",
+            "hero/elf_m",
+            "hero/elf_f",
+            "hero/lizard_m",
+            "hero/lizard_f",
+            "hero/wizzard_m",
+            "hero/wizzard_f");
     /** Game music. */
     public static final Music MUSIC_GAME = getAssetLoader().loadMusic("melody.wav");
     /** Menu music. */
     public static final Music MUSIC_MENU = getAssetLoader().loadMusic("menu.wav");
 
+    public static final Background MAIN_BACKGROUND = new Background(new BackgroundImage(  // Image by upklyak on Freepik
+                image("loading.jpg"),
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT));
+
     /**
      * Creates AnimationChannel for AnimatedTexture.
      *
-     * @param filename initial part of file name
-     * @param nFrames number of frames
-     * @param seconds total duration of the animation in seconds
+     * @param filename initial part of file name, to be extended with frame number and extension
+     * @param frames number of frames
+     * @param duration total duration of the animation in seconds
      * @return animation channel
      * @see AnimationChannel
      */
-    public static AnimationChannel getAnimationChannel(String filename, int nFrames, double seconds) {
+    public static AnimationChannel createAnimationChannel(String filename, int frames, double duration) {
         List<Image> list = new ArrayList<>();
-        for (int i = 0; i < nFrames; i++)
+        for (int i = 0; i < frames; i++)
             list.add(image(filename + i + ".png"));
-        return new AnimationChannel(list, Duration.seconds(seconds));
+        return new AnimationChannel(list, Duration.seconds(duration));
+    }
+
+    public static Rectangle createRectangle(double width, double height, Color stroke) {
+        Rectangle rectangle = new Rectangle(width, height, Color.BLACK);
+        rectangle.setStroke(stroke);
+        rectangle.setStrokeWidth(4.0);
+        rectangle.setEffect(new DropShadow(8.0, Color.color(0, 0, 0, 0.9)));
+        return rectangle;
     }
 
     /**
@@ -76,30 +85,39 @@ public class Utils {
      * @see Pane
      */
     public static Pane createActionButton(String text, double width, double height, double fontSize, Runnable onClick) {
-        Rectangle bg = new Rectangle(width, height, Color.BLACK);
-        bg.setStrokeWidth(4.0);
-        bg.setEffect(new DropShadow(8.0, Color.color(0, 0, 0, 0.9)));
+        Rectangle bg = createRectangle(width, height, Color.YELLOW);
         Text txt = getUIFactoryService().newText(text, Color.WHITE, fontSize);
-
         Pane pane = new StackPane(bg, txt);
-        pane.setPrefSize(bg.getWidth(), bg.getHeight());
+        pane.setMinSize(bg.getWidth(), bg.getHeight());
+        pane.setMaxSize(bg.getWidth(), bg.getHeight());
         pane.setOnMouseClicked(event -> onClick.run());
-
         bg.strokeProperty().bind(Bindings.when(pane.hoverProperty()).then(Color.GREEN).otherwise(Color.YELLOW));
-
         return pane;
     }
 
     /**
      * Creates custom slider, with applied CSS stylesheet, for UIs.
      *
-     * @param value initial value for slider
+     * @param property DoubleProperty bound to the slider
      * @return slider
-     * @see Slider
+     * @see DoubleProperty
      */
-    public static Slider createSlider(double value) {
-        Slider slider = new Slider(0.0, 1.0, value);
-        slider.getStylesheets().add("assets/style.css");
+    public static Pane createSlider(DoubleProperty property) {
+        Rectangle bar = createRectangle(200.0, 24.0, Color.YELLOW);
+        Rectangle thumb = createRectangle(24.0, 40.0, Color.YELLOW);
+        thumb.strokeProperty().bind(Bindings.when(thumb.hoverProperty()).then(Color.GREEN).otherwise(Color.YELLOW));
+        thumb.setOnMouseDragged(event -> {
+            double endTranslation = thumb.getTranslateX() + event.getX() - 12.0;
+            if (endTranslation < 0) endTranslation = 0;
+            else if (endTranslation > 176.0) endTranslation = 176.0;
+            thumb.setTranslateX(endTranslation);
+        });
+        StackPane slider = new StackPane(bar, thumb);
+        slider.setMinSize(bar.getWidth(), thumb.getHeight());
+        slider.setMaxSize(bar.getWidth(), thumb.getHeight());
+        slider.setAlignment(Pos.CENTER_LEFT);
+        thumb.setTranslateX(property.get() * 176.0);
+        property.bind(thumb.translateXProperty().divide(176.0));
         return slider;
     }
 }

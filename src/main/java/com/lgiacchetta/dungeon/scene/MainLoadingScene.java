@@ -7,10 +7,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import java.util.stream.Stream;
+
 import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
-import static com.almasb.fxgl.dsl.FXGL.image;
-import static com.lgiacchetta.dungeon.Utils.MAIN_LOADING_CHARACTERS;
-import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
+import static com.lgiacchetta.dungeon.Utils.MAIN_BACKGROUND;
+import static com.lgiacchetta.dungeon.Utils.createAnimationChannel;
 
 /**
  * Scene that will be displayed when the game is loading.
@@ -24,15 +25,29 @@ public class MainLoadingScene extends LoadingScene {
      * Initializes new MainLoadingScene.
      */
     public MainLoadingScene() {
-        Text textLoading = getUIFactoryService().newText(
-                "LOADING", Color.WHITE, 104.0);
+        VBox vBox = new VBox(100.0, getTextLoading(), getRunningCharacters());
+        vBox.setMinSize(getAppWidth(), getAppHeight());
+        vBox.setMaxSize(getAppWidth(), getAppHeight());
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setBackground(MAIN_BACKGROUND);
+        getContentRoot().getChildren().addAll(vBox);
+    }
+
+    private Text getTextLoading() {
+        Text textLoading = getUIFactoryService().newText("LOADING", Color.WHITE, 104.0);
         textLoading.setStroke(Color.BLACK);
         textLoading.setStrokeWidth(2.0);
+        return textLoading;
+    }
 
+    private Pane getRunningCharacters() {
         HBox hBox = new HBox(48.0);
         hBox.setAlignment(Pos.CENTER);
-        MAIN_LOADING_CHARACTERS.stream()
-                .map(asset -> new AnimatedTexture(getAnimationChannel(asset, 4, 0.5)))
+        Stream.of("orc/boss/ogre_run_anim_f",
+                "demon/boss/big_demon_run_anim_f",
+                "undead/boss/big_zombie_run_anim_f",
+                "hero/knight_m_run_anim_f")
+                .map(asset -> new AnimatedTexture(createAnimationChannel(asset, 4, 0.5)))
                 .forEach(texture -> {
                     texture.loop();
                     this.addListener(texture);
@@ -40,19 +55,6 @@ public class MainLoadingScene extends LoadingScene {
                     texture.setScaleY(1.5);
                     hBox.getChildren().add(texture);
                 });
-
-        VBox vBox = new VBox(100.0,
-                textLoading,
-                hBox);
-        vBox.setPrefSize(getAppWidth(), getAppHeight());
-        vBox.setAlignment(Pos.CENTER);
-        vBox.setBackground(new Background(new BackgroundImage(  // Image by upklyak on Freepik
-                image("loading.jpg"),
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                BackgroundSize.DEFAULT)));
-
-        getContentRoot().getChildren().addAll(vBox);
+        return hBox;
     }
 }
