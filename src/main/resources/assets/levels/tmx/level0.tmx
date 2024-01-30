@@ -312,13 +312,13 @@
     <property name="message" value="To go to the next level you have to find and open the door with the yellow flags"/>
    </properties>
   </object>
-  <object id="1" name="player1" type="player" x="48" y="576">
+  <object id="1" name="playerOne" type="player" x="48" y="576">
    <properties>
     <property name="type" type="int" value="1"/>
    </properties>
    <point/>
   </object>
-  <object id="2" name="player2" type="player" x="112" y="576">
+  <object id="2" name="playerTwo" type="player" x="112" y="576">
    <properties>
     <property name="type" type="int" value="2"/>
    </properties>

@@ -6,12 +6,12 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 
-import static com.almasb.fxgl.dsl.FXGL.getGameTimer;
-import static com.almasb.fxgl.dsl.FXGL.play;
-import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
+import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.lgiacchetta.dungeon.Utils.createAnimationChannel;
 
 /**
  * Player Component added to player entities.
@@ -23,10 +23,13 @@ import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
 public class PlayerComponent extends Component {
     private static final double DAMAGE_COOLDOWN = 1.0;
     private static final double TELEPORT_COOLDOWN = 4.0;
+    public static final double INIT_VELOCITY = 100.0;
+    public static final double INIT_HEALTH = 3.0;
+
     private final AnimatedTexture texture;
     private final AnimationChannel idle;
     private final AnimationChannel walk;
-    private final double velocity = 100.0;
+    private final double velocity;
     /** Doesn't need to be initialized, it's added during entity generation. */
     private PhysicsComponent physics;
     /** Doesn't need to be initialized, it's added during entity generation. */
@@ -34,18 +37,13 @@ public class PlayerComponent extends Component {
     private double lastDamaged;
     private double lastTeleported;
 
-    /**
-     * Initializes PlayerComponent.
-     *
-     * @param idleAsset string to retrieve idle animated texture
-     * @param walkAsset string to retrieve walk animated texture
-     */
-    public PlayerComponent(String idleAsset, String walkAsset) {
+    public PlayerComponent(String asset) {
         lastDamaged = lastTeleported = getGameTimer().getNow();
-        idle = getAnimationChannel(idleAsset, 4, 1.0);
-        walk = getAnimationChannel(walkAsset, 4, 0.5);
+        idle = createAnimationChannel(asset + "_idle_anim_f", 4, 1.0);
+        walk = createAnimationChannel(asset + "_run_anim_f", 4, 0.5);
         texture = new AnimatedTexture(idle);
         texture.loop();
+        velocity = INIT_VELOCITY;
     }
 
     /**
@@ -106,6 +104,14 @@ public class PlayerComponent extends Component {
     public void stop() {
         physics.setVelocityX(0);
         physics.setVelocityY(0);
+    }
+
+    public double getHealth() {
+        return health.getValue();
+    }
+
+    public DoubleProperty getHealthProperty() {
+        return health.valueProperty();
     }
 
     /**

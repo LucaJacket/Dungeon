@@ -23,7 +23,7 @@ public class PlayerPotionHandler extends CollisionHandler {
 
     @Override
     protected void onCollisionBegin(Entity a, Entity b) {
-        if (!a.hasComponent(PlayerComponent.class)) return;
+        assert a.hasComponent(PlayerComponent.class);
         a.getComponent(PlayerComponent.class).restore(1.0);
         b.removeFromWorld();
     }

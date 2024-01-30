@@ -13,20 +13,15 @@ import com.lgiacchetta.dungeon.scene.LevelEndScene;
  * @see CollisionHandler
  */
 public class PlayerExitHandler extends CollisionHandler {
-    private final Runnable onLevelEnded;
-
     /**
      * Initializes PlayerExitHandler.
-     *
-     * @param onLevelEnded called when collision begins
      */
-    public PlayerExitHandler(Runnable onLevelEnded) {
+    public PlayerExitHandler() {
         super(EntityType.PLAYER, EntityType.EXIT);
-        this.onLevelEnded = onLevelEnded;
     }
 
     @Override
     protected void onCollisionBegin(Entity a, Entity b) {
-        new LevelEndScene(onLevelEnded).onLevelEnd();
+        new LevelEndScene().push();
     }
 }

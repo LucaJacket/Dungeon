@@ -5,7 +5,7 @@ import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 
 import static com.almasb.fxgl.dsl.FXGL.play;
-import static com.lgiacchetta.dungeon.Utils.getAnimationChannel;
+import static com.lgiacchetta.dungeon.Utils.createAnimationChannel;
 
 /**
  * Spike Component added to spike entities.
@@ -24,8 +24,8 @@ public class SpikeComponent extends Component {
      * Initializes SpikeComponent.
      */
     public SpikeComponent() {
-        safe = getAnimationChannel("spike/floor_spikes_anim_f", 8, 4.0);
-        danger = getAnimationChannel("spike/floor_spikes_danger_anim_f", 1, 2.0);
+        safe = createAnimationChannel("spike/floor_spikes_anim_f", 8, 4.0);
+        danger = createAnimationChannel("spike/floor_spikes_danger_anim_f", 1, 2.0);
         texture = new AnimatedTexture(safe);
         texture.loop();
         isDangerous = false;

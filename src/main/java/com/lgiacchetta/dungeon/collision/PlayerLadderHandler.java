@@ -25,7 +25,7 @@ public class PlayerLadderHandler extends CollisionHandler {
 
     @Override
     protected void onCollisionBegin(Entity a, Entity b) {
-        if (!a.hasComponent(PlayerComponent.class)) return;
+        assert a.hasComponent(PlayerComponent.class);
         getGameWorld().getEntitiesByType(EntityType.LADDER).stream()
                 .filter(ladder -> !ladder.equals(b) &&
                         ladder.getProperties().getValue("connected") ==
